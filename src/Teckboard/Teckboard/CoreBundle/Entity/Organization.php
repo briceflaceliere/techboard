@@ -6,88 +6,33 @@
  * Time: 18:02
  */
 
-namespace Teckboard\Teckboard\CoreBundle;
+namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Teckboard\Teckboard\CoreBundle\Entity\Interfaces\OwnerableInterface;
-use Teckboard\Teckboard\CoreBundle\Traits\TimestampableTrait;
 
-class User implements OwnerableInterface
+class User extends Owner
 {
-    use TimestampableTrait;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-
-
     /**
      * @var string
      *
      * @ORM\Column(type="string", unique=true, nullable=false, length=100)
      */
-    protected $userName;
+    protected $name;
 
     /**
      * @return string
      */
-    public function getUserName()
+    public function getName()
     {
-        return $this->userName;
+        return $this->name;
     }
 
     /**
-     * @param string $userName
+     * @param string $name
      */
-    public function setUserName($userName)
+    public function setName($name)
     {
-        $this->userName = $userName;
-    }
-
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    protected $password;
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
+        $this->name = $name;
     }
 
 
@@ -117,30 +62,5 @@ class User implements OwnerableInterface
 
     protected $picture;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="date", nullable=true)
-     */
-    protected $birthDay;
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthDay()
-    {
-        return $this->birthDay;
-    }
-
-    /**
-     * @param \DateTime $birthDay
-     */
-    public function setBirthDay(\DateTime $birthDay)
-    {
-        $this->birthDay = $birthDay;
-    }
-
-
-    protected $city;
 
 }

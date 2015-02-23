@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<skipper version="3.1.0.1176" name="Teckboard" mvc="Symfony2" orm="Doctrine2" uuid="986051a3-0258-47ae-874a-7f3dda82a3db">
+  <module name="Teckbord\Teckboard\CoreBundle" import-format="Doctrine2Php" import-path="entity" uuid="00edb074-3e5f-4a4e-8804-f678edfd6ade">
+    <entity name="UnnamedEntity" uuid="07ceb930-526d-461e-8fcf-ab71b47b63ac">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="ca48ddf6-e037-45c8-ba5e-edbdb3f08667"/>
+    </entity>
+    <orm-attributes>
+      <attribute name="namespace">Teckbord\Teckboard\CoreBundle</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <module uuid="00edb074-3e5f-4a4e-8804-f678edfd6ade" bg-color="4294900968" position-x="61" position-y="72" size-x="11" size-x2="773" size-y="22" size-y2="593"/>
+    <entity uuid="07ceb930-526d-461e-8fcf-ab71b47b63ac" bg-color="4294967295" hdr-color="4292006610" position-x="9" position-y="18" size-x="0" size-x2="74" size-y="0" size-y2="31"/>
+    <project uuid="986051a3-0258-47ae-874a-7f3dda82a3db" size-x="0" size-x2="918" size-y="0" size-y2="715"/>
+  </visual-data>
+</skipper>

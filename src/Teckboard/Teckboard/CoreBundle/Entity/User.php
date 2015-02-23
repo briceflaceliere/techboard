@@ -6,39 +6,13 @@
  * Time: 18:02
  */
 
-namespace Teckboard\Teckboard\CoreBundle;
+namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Teckboard\Teckboard\CoreBundle\Traits\TimestampableTrait;
-
-class User implements OwnerableInterface {
-
-    use TimestampableTrait;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
 
+class User extends Owner
+{
 
     /**
      * @var string
@@ -115,30 +89,5 @@ class User implements OwnerableInterface {
 
     protected $picture;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="date", nullable=true)
-     */
-    protected $birthDay;
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthDay()
-    {
-        return $this->birthDay;
-    }
-
-    /**
-     * @param \DateTime $birthDay
-     */
-    public function setBirthDay(\DateTime $birthDay)
-    {
-        $this->birthDay = $birthDay;
-    }
-
-
-    protected $city;
 
 }
