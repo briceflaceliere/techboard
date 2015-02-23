@@ -10,7 +10,12 @@ namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
+/**
+ * Class User
+ * @package Teckboard\Teckboard\CoreBundle\Entity
+ *
+ * @ORM\Entity
+ */
 class User extends Owner
 {
 

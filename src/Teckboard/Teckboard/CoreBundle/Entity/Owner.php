@@ -13,10 +13,10 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
- * @Entity
- * @InheritanceType("JOINED")
- * @DiscriminatorColumn(name="type", type="string")
- * @DiscriminatorMap({"user" = "User", "organization" = "Organization"})
+ * @ORM\Entity
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="relation", type="string")
+ * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
  */
 class Owner
 {
