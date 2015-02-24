@@ -10,16 +10,14 @@ namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
-use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="relation", type="string")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
  */
 class Owner
 {
-    use TimestampableTrait, IdTrait;
-
+    use IdTrait;
 }

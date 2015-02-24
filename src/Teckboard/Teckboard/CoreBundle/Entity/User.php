@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
  * Class User
@@ -18,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends Owner
 {
+    use TimestampableTrait;
 
     /**
      * @var string
