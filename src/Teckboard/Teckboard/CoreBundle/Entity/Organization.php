@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
@@ -17,33 +18,17 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  *
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\OrganizationRepository");
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="name",
+ *          column=@ORM\Column(
+ *              unique   = true
+ *          )
+ *      )
+ * })
  */
 class Organization extends Owner
 {
-    use TimestampableTrait;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true, nullable=false, length=100)
-     */
-    protected $name;
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
+    use TimestampableTrait, NameTrait;
 
 
     /**

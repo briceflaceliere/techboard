@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
@@ -17,35 +18,17 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  *
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\UserRepository");
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="name",
+ *          column=@ORM\Column(
+ *              unique   = true
+ *          )
+ *      )
+ * })
  */
 class User extends Owner
 {
-    use TimestampableTrait;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true, nullable=false, length=100)
-     */
-    protected $userName;
-
-    /**
-     * @return string
-     */
-    public function getUserName()
-    {
-        return $this->userName;
-    }
-
-    /**
-     * @param string $userName
-     */
-    public function setUserName($userName)
-    {
-        $this->userName = $userName;
-    }
-
-
+    use TimestampableTrait, NameTrait;
 
     /**
      * @var string
@@ -96,5 +79,6 @@ class User extends Owner
 
 
     protected $picture;
+
 
 }

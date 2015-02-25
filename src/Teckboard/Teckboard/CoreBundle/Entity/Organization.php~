@@ -72,5 +72,4 @@ class Organization extends Owner
 
     protected $picture;
 
-
 }
