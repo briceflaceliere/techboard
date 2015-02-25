@@ -12,13 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
- * Class User
+ * Class Organization
  * @package Teckboard\Teckboard\CoreBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\UserRepository");
+ * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\OrganizationRepository");
  */
-class User extends Owner
+class Organization extends Owner
 {
     use TimestampableTrait;
 
@@ -27,47 +27,22 @@ class User extends Owner
      *
      * @ORM\Column(type="string", unique=true, nullable=false, length=100)
      */
-    protected $userName;
+    protected $name;
 
     /**
      * @return string
      */
-    public function getUserName()
+    public function getName()
     {
-        return $this->userName;
+        return $this->name;
     }
 
     /**
-     * @param string $userName
+     * @param string $name
      */
-    public function setUserName($userName)
+    public function setName($name)
     {
-        $this->userName = $userName;
-    }
-
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    protected $password;
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
+        $this->name = $name;
     }
 
 
@@ -96,5 +71,6 @@ class User extends Owner
 
 
     protected $picture;
+
 
 }

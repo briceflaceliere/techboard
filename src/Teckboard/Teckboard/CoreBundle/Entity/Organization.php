@@ -16,6 +16,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  * @package Teckboard\Teckboard\CoreBundle\Entity
  *
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\OrganizationRepository");
  */
 class Organization extends Owner
 {
@@ -70,6 +71,5 @@ class Organization extends Owner
 
 
     protected $picture;
-
 
 }

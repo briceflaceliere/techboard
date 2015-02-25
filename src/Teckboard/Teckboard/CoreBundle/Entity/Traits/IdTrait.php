@@ -16,11 +16,16 @@ trait IdTrait {
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @var integer
      */
     private $id;
 
+
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {

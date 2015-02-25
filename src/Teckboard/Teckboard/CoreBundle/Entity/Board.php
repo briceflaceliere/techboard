@@ -10,15 +10,18 @@ namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
+ * Class Board
+ * @package Teckboard\Teckboard\CoreBundle\Entity
+ *
  * @ORM\Entity
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
+ * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\BoardRepository");
  */
-abstract class Owner
+class Board
 {
-    use IdTrait;
+
+
 
 }
