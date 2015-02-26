@@ -8,52 +8,64 @@
 
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
-use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
-use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
- * Class Board
- * @package Teckboard\Teckboard\CoreBundle\Entity
- *
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\BoardRepository");
- * @ORM\Table(name="Board",indexes={@ORM\Index(name="board_name_idx", columns={"name", "owner_id"})})
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
  */
-class Board
+abstract class Account
 {
-    use IdTrait, TimestampableTrait, NameTrait;
+    use IdTrait;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Account", inversedBy="boards")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
-     *
-     * @var Account $owner
-     **/
-    private $owner;
-
-    /**
-     * @return Account
-     */
-    public function getOwner()
+    public function __construct()
     {
-        return $this->owner;
+        $this->ownerBoards = new ArrayCollection();
+        $this->boardAccounts = new ArrayCollection();
     }
 
     /**
-     * @param Account $owner
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="owner")
+     **/
+    protected $ownerBoards;
+
+
+    /**
+     * @return mixed
+     *
+     * @var ArrayCollection $boardAccounts
+     */
+    public function getOwnerBoards()
+    {
+        return $this->ownerBoards;
+    }
+
+    /**
+     * @param ArrayCollection $ownerBoards
      * @return $this
      */
-    public function setOwner(Account $owner)
+    public function setOwnerBoards(ArrayCollection $ownerBoards)
     {
-        $this->owner = $owner;
+        $this->ownerBoards = $ownerBoards;
         return $this;
     }
 
+    /**
+     * @param Board $board
+     * @return $this
+     */
+    public function addOwnerBoard(Board $board)
+    {
+        $this->ownerBoards[] = $board;
+        return $this;
+    }
 
     /**
-     * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="board")
+     * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="account")
      *
      * @var ArrayCollection $boardAccounts
      **/
@@ -87,6 +99,5 @@ class Board
         $this->boardAccounts[] = $boardAccount;
         return $this;
     }
-
 
 }

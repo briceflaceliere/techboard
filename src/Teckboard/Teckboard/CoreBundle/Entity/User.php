@@ -26,7 +26,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  *      )
  * })
  */
-class User extends Owner
+class User extends Account
 {
     use TimestampableTrait, NameTrait;
 
