@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
@@ -23,37 +24,10 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  */
 class Board
 {
-    use IdTrait, TimestampableTrait, NameTrait;
+    use IdTrait, TimestampableTrait, NameTrait, CreateByTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Account", inversedBy="boards")
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
-     *
-     * @var Account $owner
-     **/
-    private $owner;
-
-    /**
-     * @return Account
-     */
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    /**
-     * @param Account $owner
-     * @return $this
-     */
-    public function setOwner(Account $owner)
-    {
-        $this->owner = $owner;
-        return $this;
-    }
-
-
-    /**
-     * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="board")
+     * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="board", cascade="ALL")
      *
      * @var ArrayCollection $boardAccounts
      **/

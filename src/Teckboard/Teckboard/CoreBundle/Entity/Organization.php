@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
@@ -28,8 +29,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  */
 class Organization extends Account
 {
-    use TimestampableTrait, NameTrait;
-
+    use TimestampableTrait, NameTrait, CreateByTrait;
 
     /**
      * @var string
@@ -53,6 +53,8 @@ class Organization extends Account
     {
         $this->privateKey = $privateKey;
     }
+
+
 
 
     protected $picture;

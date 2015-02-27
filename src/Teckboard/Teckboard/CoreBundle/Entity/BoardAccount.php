@@ -10,6 +10,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
@@ -22,7 +23,10 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  */
 class BoardAccount
 {
-    use IdTrait, TimestampableTrait;
+    use IdTrait, TimestampableTrait, NameTrait;
+
+    const TYPE_OWNER = 'owner';
+    const TYPE_SIMPLE = 'simple';
 
     /**
      * @ORM\ManyToOne(targetEntity="Board", inversedBy="BoardAccounts")
@@ -80,7 +84,7 @@ class BoardAccount
      * @ORM\Column(type="integer", nullable=false)
      * @var int $position
      */
-    private $position;
+    private $position = 1;
 
     /**
      * @return int
@@ -94,9 +98,9 @@ class BoardAccount
      * @param $position
      * @return $this
      */
-    public function setPosition(int $position)
+    public function setPosition($position)
     {
-        $this->position = $position;
+        $this->position = (int)$position;
         return $this;
     }
 

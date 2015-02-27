@@ -24,6 +24,7 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
         $orga = new Organization();
         $orga->setName('test-orga');
         $orga->setPrivateKey(hash('sha512', 'test-orga'));
+        $orga->setCreateBy($this->getReference('test-user'));
 
         $manager->persist($orga);
         $manager->flush();
@@ -38,4 +39,6 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
     {
         return 2;
     }
+
+
 } 
