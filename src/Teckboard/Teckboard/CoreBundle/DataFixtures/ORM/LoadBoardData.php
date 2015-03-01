@@ -24,11 +24,11 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
     {
         $board = new Board();
         $board->setName('board-user');
-        $board->setOwner($this->getReference('test-user'));
         $board->setCreateBy($this->getReference('test-user'));
 
         $boardAccount1 = new BoardAccount();
         $boardAccount1->setBoard($board)
+                      ->setType(BoardAccount::TYPE_OWNER)
                       ->setAccount($this->getReference('test-user'))
                       ->setPosition(1)
                       ->setName($board->getName());
@@ -38,11 +38,11 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
 
         $board2 = new Board();
         $board2->setName('board-orga');
-        $board2->setOwner($this->getReference('test-orga'));
         $board2->setCreateBy($this->getReference('test-user'));
 
         $boardAccount2 = new BoardAccount();
         $boardAccount2->setBoard($board2)
+                      ->setType(BoardAccount::TYPE_OWNER)
                       ->setAccount($this->getReference('test-user'))
                       ->setPosition(2)
                       ->setName($board2->getName());

@@ -9,7 +9,6 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
-use Teckboard\Teckboard\CoreBundle\Entity\User;
 
 /**
  * Class TypeTrait
@@ -18,7 +17,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\User;
 trait TypeTrait {
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string", nullable=false, length=100)
      *
      * @var string $type
      **/
@@ -29,7 +28,7 @@ trait TypeTrait {
     public function setType($type)
     {
         if (self::$listTypeConst === null) {
-            $oClass = new ReflectionClass(__CLASS__);
+            $oClass = new \ReflectionClass(__CLASS__);
             self::$listTypeConst  = array_filter($oClass->getConstants(), function($key) {
                 return (strpos($key, 'TYPE_') === 0);
             }, ARRAY_FILTER_USE_KEY);
@@ -40,5 +39,11 @@ trait TypeTrait {
         }
 
         $this->type = $type;
+        return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 }

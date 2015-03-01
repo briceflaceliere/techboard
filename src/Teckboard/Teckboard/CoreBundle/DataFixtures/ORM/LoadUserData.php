@@ -12,9 +12,11 @@ namespace Teckboard\Teckboard\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Teckboard\Teckboard\CoreBundle\Entity\User;
 
-class LoadUserData extends AbstractFixture implements OrderedFixtureInterface {
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
 
     /**
      * {@inheritDoc}
@@ -22,8 +24,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface {
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user->setName('test-user');
-        $user->setPassword(password_hash('test-user', PASSWORD_DEFAULT));
+        $user->setName('test');
+
+        $encoder = $this->getContainer()
+            ->get('security.encoder_factory')
+            ->getEncoder($user);
+        $user->setPassword($encoder->encodePassword('0000', $user->getSalt()));
+
         $user->setPrivateKey(hash('sha512', 'test-user'));
 
         $manager->persist($user);
@@ -38,5 +45,23 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface {
     public function getOrder()
     {
         return 1;
+    }
+
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    protected function getContainer()
+    {
+        return $this->container;
     }
 } 

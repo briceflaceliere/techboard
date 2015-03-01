@@ -9,6 +9,9 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
@@ -26,9 +29,26 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  *      )
  * })
  */
-class User extends Account
+class User extends Account implements UserInterface, EquatableInterface
 {
     use TimestampableTrait, NameTrait;
+
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    private $salt;
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        if ($this->salt === null) {
+            $this->salt = md5(time());
+        }
+        return $this->salt;
+    }
+
 
     /**
      * @var string
@@ -52,7 +72,6 @@ class User extends Account
     {
         $this->password = $password;
     }
-
 
     /**
      * @var string
@@ -80,5 +99,53 @@ class User extends Account
 
     protected $picture;
 
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return $this->getName();
+    }
 
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        return $this->getUsername() === $user->getUsername();
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            ) = unserialize($serialized);
+    }
 }

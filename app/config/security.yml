@@ -1,7 +1,18 @@
 security:
+    encoders:
+        Teckboard\Teckboard\CoreBundle\Entity\User: sha512
+
     providers:
         in_memory:
             memory: ~
+
+    firewalls:
+        admin_area:
+            pattern:    ^/dashboard
+            http_basic: ~
+
+    access_control:
+        - { path: ^/dashboard, roles: ROLE_USER }
 
     firewalls:
         dev:

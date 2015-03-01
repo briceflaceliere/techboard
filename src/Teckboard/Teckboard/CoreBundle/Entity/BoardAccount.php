@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\TypeTrait;
 
 /**
  * Class BoardAccount
@@ -23,10 +24,16 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  */
 class BoardAccount
 {
-    use IdTrait, TimestampableTrait, NameTrait;
+    use IdTrait, TimestampableTrait, NameTrait, TypeTrait;
 
     const TYPE_OWNER = 'owner';
     const TYPE_SIMPLE = 'simple';
+
+
+    function __construct()
+    {
+        $this->setType(self::TYPE_SIMPLE);
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="Board", inversedBy="BoardAccounts")

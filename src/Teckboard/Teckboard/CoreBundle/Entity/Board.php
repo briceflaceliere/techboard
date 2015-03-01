@@ -19,8 +19,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  * @package Teckboard\Teckboard\CoreBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\BoardRepository");
- * @ORM\Table(name="Board",indexes={@ORM\Index(name="board_name_idx", columns={"name", "owner_id"})})
+ * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\BoardRepository")
  */
 class Board
 {
