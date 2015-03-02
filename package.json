@@ -1,0 +1,11 @@
+{
+  "name": "teckboard",
+  "version": "0.0.1",
+  "description": "Teckboard",
+  "main": "index.js",
+  "author": "Flaceliere Brice",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "less": "~2.4.0"
+  }
+}
