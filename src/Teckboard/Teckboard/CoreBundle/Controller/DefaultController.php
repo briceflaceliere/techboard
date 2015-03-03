@@ -9,11 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/dashboard")
+     * @Route("/")
      * @Template()
      */
     public function indexAction()
     {
-        return array('name' => 'DASHBOARD');
+        return [];
     }
 }
