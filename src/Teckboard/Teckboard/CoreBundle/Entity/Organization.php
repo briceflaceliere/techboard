@@ -55,8 +55,28 @@ class Organization extends Account
     }
 
 
-
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
     protected $picture;
+
+    /**
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param string $privateKey
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
 
 }

@@ -97,8 +97,6 @@ class User extends Account implements UserInterface, EquatableInterface
     }
 
 
-    protected $picture;
-
     /**
      * Returns the username used to authenticate the user.
      *

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" ng-app="teckboardApp">
     <head>
         <meta charset="UTF-8">
         <title>AdminLTE 2 | Dashboard</title>
@@ -83,6 +83,13 @@
         '@TeckboardCoreBundle/Resources/public/libs/AdminLTE/js/app.min.js'
         '@TeckboardCoreBundle/Resources/public/libs/AdminLTE/js/pages/dashboard.js'
         '@TeckboardCoreBundle/Resources/public/libs/AdminLTE/js/demo.js' output='js/compiled/lte.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts
+        '@TeckboardCoreBundle/Resources/public/libs/angular/angular.min.js'
+        '@TeckboardCoreBundle/Resources/public/app/*'
+        '@TeckboardCoreBundle/Resources/public/app/controllers/*' output='js/compiled/teckboard.js'%}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
