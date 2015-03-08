@@ -11,6 +11,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
 
 /**
  * @ORM\Entity
@@ -18,9 +19,9 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
  */
-abstract class Account
+abstract class Account implements \Serializable
 {
-    use IdTrait;
+    use IdTrait, PictureTrait;
 
     public function __construct()
     {

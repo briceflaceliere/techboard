@@ -11,6 +11,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 
 /**
@@ -53,30 +54,5 @@ class Organization extends Account
     {
         $this->privateKey = $privateKey;
     }
-
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    protected $picture;
-
-    /**
-     * @return string
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * @param string $privateKey
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-    }
-
 
 }
