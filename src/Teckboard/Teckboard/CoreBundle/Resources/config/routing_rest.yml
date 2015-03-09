@@ -1,0 +1,4 @@
+users :
+  type: rest
+  resource:     "TeckboardCoreBundle:UserRest"
+  name_prefix:  api_

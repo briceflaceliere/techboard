@@ -12,12 +12,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
+ * @JMS\ExclusionPolicy("all")
  */
 abstract class Account implements \Serializable
 {
@@ -25,44 +27,7 @@ abstract class Account implements \Serializable
 
     public function __construct()
     {
-        $this->ownerBoards = new ArrayCollection();
         $this->boardAccounts = new ArrayCollection();
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity="Board", mappedBy="owner")
-     **/
-    protected $ownerBoards;
-
-
-    /**
-     * @return mixed
-     *
-     * @var ArrayCollection $boardAccounts
-     */
-    public function getOwnerBoards()
-    {
-        return $this->ownerBoards;
-    }
-
-    /**
-     * @param ArrayCollection $ownerBoards
-     * @return $this
-     */
-    public function setOwnerBoards(ArrayCollection $ownerBoards)
-    {
-        $this->ownerBoards = $ownerBoards;
-        return $this;
-    }
-
-    /**
-     * @param Board $board
-     * @return $this
-     */
-    public function addOwnerBoard(Board $board)
-    {
-        $this->ownerBoards[] = $board;
-        return $this;
     }
 
     /**

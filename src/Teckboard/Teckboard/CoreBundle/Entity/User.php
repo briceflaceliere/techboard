@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class User
@@ -28,6 +29,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  *          )
  *      )
  * })
+ * @JMS\ExclusionPolicy("all")
  */
 class User extends Account implements UserInterface, EquatableInterface
 {
@@ -104,6 +106,7 @@ class User extends Account implements UserInterface, EquatableInterface
     /**
      * Returns the username used to authenticate the user.
      *
+     * @JMS\VirtualProperty
      * @return string The username
      */
     public function getUsername()

@@ -19,7 +19,10 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new Teckboard\Teckboard\CoreBundle\TeckboardCoreBundle(),
+            new Teckboard\Teckboard\WebBundle\TeckboardWebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
