@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 trait IdTrait {
 
@@ -16,6 +17,7 @@ trait IdTrait {
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @JMS\Expose
      *
      * @var integer
      */

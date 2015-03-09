@@ -1,6 +1,10 @@
-teckboard_core:
-    resource: "@TeckboardCoreBundle/Controller"
+teckboard_web:
+    resource: "@TeckboardWebBundle/Controller"
     type:     annotation
+rest :
+  type : rest
+  resource : "routing_rest.yml"
+  prefix : /api
 login_check:
     pattern:   /login_check
 _liip_imagine:

@@ -9,6 +9,7 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class TypeTrait
@@ -18,6 +19,7 @@ trait TypeTrait {
 
     /**
      * @ORM\Column(type="string", nullable=false, length=100)
+     * @JMS\Expose
      *
      * @var string $type
      **/

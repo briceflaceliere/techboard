@@ -8,6 +8,7 @@
 
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;

@@ -9,11 +9,14 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+
 
 trait PictureTrait {
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @JMS\Expose
      *
      * @var string
      */

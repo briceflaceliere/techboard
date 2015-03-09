@@ -9,11 +9,13 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 trait NameTrait {
 
     /**
      * @ORM\Column(type="string", length=100, nullable=false)
+     * @JMS\Expose
      *
      * @var string
      */

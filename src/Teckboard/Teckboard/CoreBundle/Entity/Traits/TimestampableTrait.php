@@ -10,6 +10,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 trait TimestampableTrait {
 
@@ -18,6 +19,7 @@ trait TimestampableTrait {
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
+     * @JMS\Expose
      */
     private $created;
 
@@ -44,6 +46,7 @@ trait TimestampableTrait {
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
+     * @JMS\Expose
      */
     private $updated;
 

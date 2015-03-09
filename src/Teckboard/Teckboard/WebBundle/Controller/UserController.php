@@ -1,10 +1,11 @@
 <?php
 
-namespace Teckboard\Teckboard\CoreBundle\Controller;
+namespace Teckboard\Teckboard\WebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class UserController extends Controller
@@ -13,9 +14,8 @@ class UserController extends Controller
      * @Route("/login")
      * @Template()
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        $request = $this->getRequest();
         $session = $request->getSession();
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {

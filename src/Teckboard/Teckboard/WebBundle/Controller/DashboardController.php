@@ -1,15 +1,15 @@
 <?php
 
-namespace Teckboard\Teckboard\CoreBundle\Controller;
+namespace Teckboard\Teckboard\WebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
+class DashboardController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/dashboards")
      * @Template()
      */
     public function indexAction()
