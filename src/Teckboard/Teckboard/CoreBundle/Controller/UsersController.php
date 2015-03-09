@@ -12,14 +12,14 @@ namespace Teckboard\Teckboard\CoreBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\View;
 
-class UserRestController extends FOSRestController {
+class UsersController extends FOSRestController {
 
     /**
      * @View(serializerGroups={"Default"})
      * @param $name
      * @return mixed
      */
-    public function getUserAction($name){
+    public function getUsersAction($name){
         $user = $this->getDoctrine()->getRepository('TeckboardCoreBundle:User')->findOneByName($name);
         if(!is_object($user)){
             throw $this->createNotFoundException();
@@ -31,7 +31,7 @@ class UserRestController extends FOSRestController {
      * @View(serializerGroups={"Default","Me"})
      * @return mixed
      */
-    public function getMeAction(){
+    public function meUsersAction(){
         return $this->getUser();
     }
 

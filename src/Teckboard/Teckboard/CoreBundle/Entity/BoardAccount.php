@@ -13,6 +13,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TypeTrait;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class BoardAccount
@@ -40,6 +41,7 @@ class BoardAccount
      * @ORM\JoinColumn(name="board_id", referencedColumnName="id", nullable=false)
      *
      * @var Board $board
+     * @JMS\Exclude
      **/
     private $board;
 

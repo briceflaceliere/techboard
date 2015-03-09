@@ -20,6 +20,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"user" = "User", "organization" = "Organization"})
  * @JMS\ExclusionPolicy("all")
+ * @JMS\Discriminator(field = "type", map = {"user": "Teckboard\Teckboard\CoreBundle\Entity\User", "organization": "Teckboard\Teckboard\CoreBundle\Entity\Organization"})
  */
 abstract class Account implements \Serializable
 {
@@ -34,6 +35,7 @@ abstract class Account implements \Serializable
      * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="account")
      *
      * @var ArrayCollection $boardAccounts
+     * @JMS\Expose()
      **/
     protected $boardAccounts;
 
