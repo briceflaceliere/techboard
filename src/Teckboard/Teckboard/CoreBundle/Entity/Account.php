@@ -28,44 +28,34 @@ abstract class Account implements \Serializable
 
     public function __construct()
     {
-        $this->boardAccounts = new ArrayCollection();
+        $this->boards = new ArrayCollection();
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="account")
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="account")
+     * @ORM\OrderBy({"name" = "ASC"})
      *
-     * @var ArrayCollection $boardAccounts
      * @JMS\Expose()
+     * @var ArrayCollection $boards
      **/
-    protected $boardAccounts;
-
+    protected $boards;
 
     /**
      * @return ArrayCollection
      */
-    public function getBoardAccounts()
+    public function getBoards()
     {
-        return $this->boardAccounts;
+        return $this->boards;
     }
 
     /**
-     * @param ArrayCollection $boardAccounts
-     * @return $this
+     * @param ArrayCollection $boards
      */
-    public function setBoardAccounts(ArrayCollection $boardAccounts)
+    public function setBoards(ArrayCollection $boards)
     {
-        $this->boardAccounts = $boardAccounts;
+        $this->boards = $boards;
         return $this;
     }
 
-    /**
-     * @param BoardAccount $boardAccount
-     * @return $this
-     */
-    public function addBoardAccounts(BoardAccount $boardAccount)
-    {
-        $this->boardAccounts[] = $boardAccount;
-        return $this;
-    }
 
 }

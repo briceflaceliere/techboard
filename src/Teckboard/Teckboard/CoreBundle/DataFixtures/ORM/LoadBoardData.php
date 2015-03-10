@@ -23,39 +23,18 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
     public function load(ObjectManager $manager)
     {
         $board = new Board();
-        $board->setName('board-user');
-        $board->setCreateBy($this->getReference('test-user'));
-
-        $boardAccount1 = new BoardAccount();
-        $boardAccount1->setBoard($board)
-                      ->setType(BoardAccount::TYPE_OWNER)
-                      ->setAccount($this->getReference('test-user'))
-                      ->setPosition(1)
-                      ->setName($board->getName());
+        $board->setName('board-user')
+              ->setAccount($this->getReference('test-user'))
+              ->setCreateBy($this->getReference('test-user'));
 
         $manager->persist($board);
-        $manager->persist($boardAccount1);
 
         $board2 = new Board();
-        $board2->setName('board-orga');
-        $board2->setCreateBy($this->getReference('test-user'));
-
-        $boardAccount2 = new BoardAccount();
-        $boardAccount2->setBoard($board2)
-                      ->setType(BoardAccount::TYPE_OWNER)
-                      ->setAccount($this->getReference('test-user'))
-                      ->setPosition(2)
-                      ->setName($board2->getName());
-
-        $boardAccount3 = new BoardAccount();
-        $boardAccount3->setBoard($board2)
-                      ->setAccount($this->getReference('test-orga'))
-                      ->setPosition(1)
-                      ->setName($board2->getName());
+        $board2->setName('board-orga')
+               ->setAccount($this->getReference('test-orga'))
+               ->setCreateBy($this->getReference('test-user'));
 
         $manager->persist($board2);
-        $manager->persist($boardAccount2);
-        $manager->persist($boardAccount3);
 
         $manager->flush();
     }

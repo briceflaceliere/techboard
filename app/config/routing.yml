@@ -1,10 +1,13 @@
 teckboard_web:
     resource: "@TeckboardWebBundle/Controller"
     type:     annotation
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc/api
 rest :
-  type : rest
-  resource : "routing_rest.yml"
-  prefix : /api
+    type : rest
+    resource : "routing_rest.yml"
+    prefix : /api
 login_check:
     pattern:   /login_check
 _liip_imagine:

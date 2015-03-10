@@ -11,15 +11,20 @@ namespace Teckboard\Teckboard\CoreBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class UsersController extends FOSRestController {
 
     /**
+     * Get specific user information
+     *
+     * @ApiDoc
      * @View(serializerGroups={"Default"})
-     * @param $name
+     * @param string $name User name
      * @return mixed
      */
-    public function getUsersAction($name){
+    public function getUsersAction($name)
+    {
         $user = $this->getDoctrine()->getRepository('TeckboardCoreBundle:User')->findOneByName($name);
         if(!is_object($user)){
             throw $this->createNotFoundException();
@@ -28,10 +33,15 @@ class UsersController extends FOSRestController {
     }
 
     /**
+     * Get connected user information
+     *
+     * @ApiDoc
      * @View(serializerGroups={"Default","Me"})
+     *
      * @return mixed
      */
-    public function meUsersAction(){
+    public function getMeAction()
+    {
         return $this->getUser();
     }
 

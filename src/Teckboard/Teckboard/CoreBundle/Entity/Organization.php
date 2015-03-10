@@ -13,6 +13,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Organization
@@ -27,6 +28,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
  *          )
  *      )
  * })
+ * @JMS\ExclusionPolicy("all")
  */
 class Organization extends Account
 {

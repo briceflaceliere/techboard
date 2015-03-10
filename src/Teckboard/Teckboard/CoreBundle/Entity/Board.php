@@ -14,53 +14,46 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Board
  * @package Teckboard\Teckboard\CoreBundle\Entity
  *
- * @ORM\Entity
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\BoardRepository")
+ *
  */
 class Board
 {
     use IdTrait, TimestampableTrait, NameTrait, CreateByTrait;
 
     /**
-     * @ORM\OneToMany(targetEntity="BoardAccount", mappedBy="board", cascade="ALL")
+     * @ORM\ManyToOne(targetEntity="Account", inversedBy="boards")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      *
-     * @var ArrayCollection $boardAccounts
+     * @var Account $account
      **/
-    protected $boardAccounts;
-
+    protected $account;
 
     /**
-     * @return ArrayCollection
+     * @return Account
      */
-    public function getBoardAccounts()
+    public function getAccount()
     {
-        return $this->boardAccounts;
+        return $this->account;
     }
 
     /**
-     * @param ArrayCollection $boardAccounts
-     * @return $this
+     * @param Account $account
      */
-    public function setBoardAccounts(ArrayCollection $boardAccounts)
+    public function setAccount($account)
     {
-        $this->boardAccounts = $boardAccounts;
+        $this->account = $account;
         return $this;
     }
 
-    /**
-     * @param BoardAccount $boardAccount
-     * @return $this
-     */
-    public function addBoardAccounts(BoardAccount $boardAccount)
-    {
-        $this->boardAccounts[] = $boardAccount;
-        return $this;
-    }
+
 
 
 }
