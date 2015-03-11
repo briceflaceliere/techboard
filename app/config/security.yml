@@ -11,7 +11,7 @@ security:
 
     access_control:
         - { path: ^/dashboards, roles: ROLE_USER }
-        - { path: ^/api/me, roles: ROLE_USER }
+        - { path: ^/api, roles: ROLE_USER }
 
     firewalls:
         dashboards_area:
