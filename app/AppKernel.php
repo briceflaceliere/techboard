@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Teckboard\Teckboard\CoreBundle\TeckboardCoreBundle(),
             new Teckboard\Teckboard\WebBundle\TeckboardWebBundle(),
