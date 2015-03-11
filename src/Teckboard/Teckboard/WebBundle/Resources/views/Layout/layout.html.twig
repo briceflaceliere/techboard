@@ -88,8 +88,10 @@
 
         {% javascripts
         '@TeckboardWebBundle/Resources/public/libs/angular/angular.min.js'
+        '@TeckboardWebBundle/Resources/public/libs/restangular/dist/restangular.min.js'
         '@TeckboardWebBundle/Resources/public/app/*'
-        '@TeckboardWebBundle/Resources/public/app/controllers/*' output='js/compiled/teckboard.js'%}
+        '@TeckboardWebBundle/Resources/public/app/controllers/*'
+        '@TeckboardWebBundle/Resources/public/app/services/*' output='js/compiled/teckboard.js'%}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 

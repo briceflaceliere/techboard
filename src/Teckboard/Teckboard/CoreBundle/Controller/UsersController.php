@@ -20,12 +20,17 @@ class UsersController extends FOSRestController {
      *
      * @ApiDoc
      * @View(serializerGroups={"Default"})
-     * @param string $name User name
+     * @param mixed $id User id
      * @return mixed
      */
-    public function getUsersAction($name)
+    public function getUsersAction($id)
     {
-        $user = $this->getDoctrine()->getRepository('TeckboardCoreBundle:User')->findOneByName($name);
+        if ($id == 'me') {
+            $user = $this->getUser();
+        } else {
+            $user = $this->getDoctrine()->getRepository('TeckboardCoreBundle:User')->find($id);
+        }
+
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }
@@ -33,16 +38,16 @@ class UsersController extends FOSRestController {
     }
 
     /**
-     * Get connected user information
+     * Get board user information
      *
      * @ApiDoc
-     * @View(serializerGroups={"Default","Me"})
+     * @View(serializerGroups={"Default"})
+     * @param mixed $id User id
      *
      * @return mixed
      */
-    public function getMeAction()
+    public function getUserBoardsAction($id)
     {
-        return $this->getUser();
+        return $this->getUsersAction($id)->getBoards();
     }
-
 } 

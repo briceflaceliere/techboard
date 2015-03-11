@@ -35,7 +35,8 @@ abstract class Account implements \Serializable
      * @ORM\OneToMany(targetEntity="Board", mappedBy="account")
      * @ORM\OrderBy({"name" = "ASC"})
      *
-     * @JMS\Expose()
+     * @JMS\Groups({"Me"})
+     * @JMS\Expose
      * @var ArrayCollection $boards
      **/
     protected $boards;

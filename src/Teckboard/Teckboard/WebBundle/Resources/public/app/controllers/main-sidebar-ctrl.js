@@ -1,7 +1,7 @@
 /**
  * Side bar controller
  */
-teckboard.controller('mainSideBarCtrl', ['$scope',
+teckboard.controller('mainSideBarCtrl', ['$scope', 'Me',
     function ($scope) {
         $scope.accounts = [{
             active : true,
