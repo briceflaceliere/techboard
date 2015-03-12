@@ -32,7 +32,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setPassword($encoder->encodePassword('0000', $user->getSalt()));
 
         $user->setPrivateKey(hash('sha512', 'test-user'));
-        $user->setPicture('user1.jpg');
+        $user->setPicture('/pictures/user1.jpg');
 
         $manager->persist($user);
         $manager->flush();

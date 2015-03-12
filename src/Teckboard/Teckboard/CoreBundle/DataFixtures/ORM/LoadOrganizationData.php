@@ -25,7 +25,7 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
         $orga->setName('test-orga');
         $orga->setPrivateKey(hash('sha512', 'test-orga'));
         $orga->setCreateBy($this->getReference('test-user'));
-        $orga->setPicture('user2.jpg');
+        $orga->setPicture('/pictures/user2.jpg');
 
         $manager->persist($orga);
         $manager->flush();

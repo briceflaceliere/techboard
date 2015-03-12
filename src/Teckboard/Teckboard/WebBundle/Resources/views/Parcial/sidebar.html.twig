@@ -2,13 +2,9 @@
 <aside class="main-sidebar" ng-controller="mainSideBarCtrl">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
-    {% verbatim %}{{ me }}{% endverbatim %}
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">DASHBOARDS</li>
-            <ng-account-list account="me" />
+            <li class="treeview sidebar-menu-account ng-account-list" account="me"></li>
 
             {#<li ng-repeat="account in accounts" ng-class="{ active: account.active }" class="treeview sidebar-menu-account">
 

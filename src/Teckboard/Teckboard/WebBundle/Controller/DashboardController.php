@@ -16,4 +16,16 @@ class DashboardController extends Controller
     {
         return [];
     }
+
+    /**
+     * @Route("/dashboards/template/{file}", requirements={"file" = "[A-z0-9._-]+"})
+     * @Template()
+     */
+    public function templateAction($file)
+    {
+        $pathInfo = pathinfo(str_replace('.', '/', $file) . '.html.twig');
+        return $this->render(
+            'TeckboardWebBundle:Template' . (!empty($pathInfo['dirname']) ? '/' . $pathInfo['dirname'] : '') . ':' . $pathInfo['basename']
+        );
+    }
 }
