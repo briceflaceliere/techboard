@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation as JMS;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * Class User
@@ -30,6 +31,16 @@ use JMS\Serializer\Annotation as JMS;
  *      )
  * })
  * @JMS\ExclusionPolicy("all")
+ * @Hateoas\Relation(
+ *          "self",
+ *          href = @Hateoas\Route("api_user_get_users", parameters = {"id" = "expr(object.getId())" })
+ * )
+ * @Hateoas\Relation(
+ *          "boards",
+ *          href = @Hateoas\Route("api_user_get_user_boards", parameters = {"id" = "expr(object.getId())" }),
+ *          embedded = "expr(object.getBoards())",
+ *          exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBoards() === null)")
+ * )
  */
 class User extends Account implements UserInterface, EquatableInterface
 {
