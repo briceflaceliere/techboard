@@ -5,6 +5,7 @@ namespace Teckboard\Teckboard\WebBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class DashboardController extends Controller
 {
@@ -19,6 +20,7 @@ class DashboardController extends Controller
 
     /**
      * @Route("/dashboards/template/{file}", requirements={"file" = "[A-z0-9._-]+"})
+     * @Cache(expires="tomorrow")
      * @Template()
      */
     public function templateAction($file)
