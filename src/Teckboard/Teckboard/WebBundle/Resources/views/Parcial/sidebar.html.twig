@@ -3,24 +3,16 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
-
+    {% verbatim %}{{ me }}{% endverbatim %}
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">DASHBOARDS</li>
-            {% verbatim %}
-                <li ng-repeat="account in accounts" ng-class="{ active: account.active }" class="treeview sidebar-menu-account">
-                    <a href="#" class="sidebar-menu-account-header">
-                        <div class="pull-left image">
-                            <img class="img-circle" alt="User Image" src="dist/img/user2-160x160.jpg">
-                        </div>
-                        <span>{{ account.name }}</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li ng-repeat="board in account.boards" ng-class="{ active : board.active }"><a href="index.html"><i class="fa fa-circle-o"></i> {{ board.name }}</a></li>
-                    </ul>
-                </li>
-            {% endverbatim %}
+            <ng-account-list account="me" />
+
+            {#<li ng-repeat="account in accounts" ng-class="{ active: account.active }" class="treeview sidebar-menu-account">
+
+            </li>#}
         </ul>
     </section>
     <!-- /.sidebar -->
