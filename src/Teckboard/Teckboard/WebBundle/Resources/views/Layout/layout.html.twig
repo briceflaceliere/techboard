@@ -22,13 +22,14 @@
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/plugins/datepicker/datepicker3.css'
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css'
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'
-        '@TeckboardWebBundle/Resources/public/libs/angular-loading-bar/dist/loading-bar.min.css'
+        '@TeckboardWebBundle/Resources/public/libs/angular-loading-bar/build/loading-bar.min.css'
+        '@TeckboardWebBundle/Resources/public/libs/spinkit/css/spinners/3-wave.css'
         filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" output='css/compiled/lte.css' />
         {% endstylesheets %}
 
         {% stylesheets
-        '@TeckboardWebBundle/Resources/less/sidebar.less'
+        '@TeckboardWebBundle/Resources/less/*'
         filter='less' %}
         <link rel="stylesheet" href="{{ asset_url }}" output='css/compiled/app.css' />
         {% endstylesheets %}
@@ -41,6 +42,17 @@
         <![endif]-->
     </head>
     <body class="skin-blue fixed">
+        <div id="loader-wrapper" data-loading>
+            <div id="loader-area">
+                <div class="sk-spinner sk-spinner-wave">
+                    <div class="sk-rect1"></div>
+                    <div class="sk-rect2"></div>
+                    <div class="sk-rect3"></div>
+                    <div class="sk-rect4"></div>
+                    <div class="sk-rect5"></div>
+                </div>
+            </div>
+        </div>
         <div class="wrapper">
             {% include "TeckboardWebBundle::Parcial/header.html.twig" %}
 
@@ -91,7 +103,7 @@
         '@TeckboardWebBundle/Resources/public/libs/angular/angular.min.js'
         '@TeckboardWebBundle/Resources/public/libs/lodash/dist/lodash.min.js'
         '@TeckboardWebBundle/Resources/public/libs/restangular/dist/restangular.min.js'
-        '@TeckboardWebBundle/Resources/public/libs/angular-loading-bar/dist/loading-bar.min.js'
+        '@TeckboardWebBundle/Resources/public/libs/angular-loading-bar/build/loading-bar.min.js'
         '@TeckboardWebBundle/Resources/public/app/*.js'
         '@TeckboardWebBundle/Resources/public/app/configs/*.js'
         '@TeckboardWebBundle/Resources/public/app/services/*.js'

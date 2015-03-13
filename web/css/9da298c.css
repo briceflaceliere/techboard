@@ -1,0 +1,46 @@
+.sidebar-menu li.sidebar-menu-account .sidebar-menu-account-header {
+  padding: 16px 5px 16px 60px;
+  position: relative;
+}
+.sidebar-menu li.sidebar-menu-account .sidebar-menu-account-header .image {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+}
+.sidebar-menu li.sidebar-menu-account .sidebar-menu-account-header .image img {
+  width: 40px;
+  height: 40px;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  height: 100%;
+  overflow: hidden;
+}
+#loader-wrapper {
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+}
+#loader-wrapper #loader-area {
+  -moz-user-select: none;
+  bottom: 60px;
+  height: 60px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+}
+#loader-wrapper .sk-spinner-wave div {
+  background-color: #3c8dbc;
+}
