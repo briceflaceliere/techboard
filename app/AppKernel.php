@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Teckboard\Teckboard\CoreBundle\TeckboardCoreBundle(),
             new Teckboard\Teckboard\WebBundle\TeckboardWebBundle(),
         );

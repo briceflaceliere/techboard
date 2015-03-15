@@ -16,26 +16,43 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class UsersController extends FOSRestController {
 
     /**
-     * Get specific user information
+     * Get current user information
      *
      * @ApiDoc
-     * @View(serializerGroups={"Default"})
-     * @param mixed $id User id
+     * @View(serializerGroups={"Default", "Me"})
      * @return mixed
      */
-    public function getUsersAction($id)
+    public function getUsersMeAction()
     {
-        if ($id == 'me') {
-            $user = $this->getUser();
-        } else {
-            $user = $this->getDoctrine()->getRepository('TeckboardCoreBundle:User')->find($id);
-        }
+        $user = $this->getUser();
 
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }
+
         return $user;
     }
+
+    /**
+     * Get specific user information
+     *
+     * @ApiDoc
+     * @View(serializerGroups={"Default"})
+     * @param int $id User id
+     * @return mixed
+     */
+    public function getUsersAction($id)
+    {
+        $user = $this->getDoctrine()->getRepository('TeckboardCoreBundle:User')->find($id);
+
+        if(!is_object($user)){
+            throw $this->createNotFoundException();
+        }
+
+        return $user;
+    }
+
+
 
     /**
      * Get board user information
@@ -49,5 +66,19 @@ class UsersController extends FOSRestController {
     public function getUserBoardsAction($id)
     {
         return $this->getUsersAction($id)->getBoards();
+    }
+
+    /**
+     * Get user organizations
+     *
+     * @ApiDoc
+     * @View(serializerGroups={"Default"})
+     * @param mixed $id User id
+     *
+     * @return mixed
+     */
+    public function getUserOrganizationsAction($id)
+    {
+        return $this->getUsersAction($id)->getOrganizations();
     }
 } 

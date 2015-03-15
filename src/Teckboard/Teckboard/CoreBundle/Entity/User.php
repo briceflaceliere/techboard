@@ -8,6 +8,7 @@
 
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -31,22 +32,15 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *      )
  * })
  * @JMS\ExclusionPolicy("all")
+ *
  * @Hateoas\Relation(
  *          "self",
  *          href = @Hateoas\Route("api_user_get_users", parameters = {"id" = "expr(object.getId())" })
- * )
- * @Hateoas\Relation(
- *          "boards",
- *          href = @Hateoas\Route("api_user_get_user_boards", parameters = {"id" = "expr(object.getId())" }),
- *          embedded = "expr(object.getBoards())",
- *          exclusion = @Hateoas\Exclusion(excludeIf = "expr(object.getBoards() === null)")
  * )
  */
 class User extends Account implements UserInterface, EquatableInterface
 {
     use TimestampableTrait, NameTrait;
-
-
 
     /**
      * @ORM\Column(type="string", length=32)
@@ -56,6 +50,7 @@ class User extends Account implements UserInterface, EquatableInterface
     function __construct()
     {
         $this->salt = md5(uniqid(null, true));
+        $this->organizations = new ArrayCollection();
     }
 
     /**
@@ -126,6 +121,49 @@ class User extends Account implements UserInterface, EquatableInterface
     }
 
     /**
+     * List of linked oraganizations
+     *
+     * @ORM\ManyToMany(targetEntity="Organization", inversedBy="users")
+     * @ORM\JoinTable(name="users_organizations")
+     *
+     * @JMS\Groups({"Me"})
+     * @JMS\Expose
+     *
+     * @var ArrayCollection $organization
+     **/
+    protected $organizations;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrganizations()
+    {
+        return $this->organizations;
+    }
+
+    /**
+     * @param ArrayCollection $organization
+     *
+     * @return $this
+     */
+    public function setOrganizations(ArrayCollection $organizations)
+    {
+        $this->organizations = $organizations;
+        return $this;
+    }
+
+    /**
+     * @param Organization $organization
+     *
+     * @return $this
+     */
+    public function addOrganization(Organization $organization)
+    {
+        $this->getOrganizations()->add($organization);
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getRoles()
@@ -144,6 +182,7 @@ class User extends Account implements UserInterface, EquatableInterface
     {
         return $this->getUsername() === $user->getUsername();
     }
+
 
 
 }

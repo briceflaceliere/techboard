@@ -1,14 +1,16 @@
 {% block sideBar %}
 <aside class="main-sidebar" ng-controller="mainSideBarCtrl">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar" ng-tree-list>
         <ul class="sidebar-menu">
             <li class="header">DASHBOARDS</li>
-            <li class="treeview sidebar-menu-account ng-account-list" account="me"></li>
+            <li ng-account-list class="treeview sidebar-menu-account" account="me"></li>
 
-            {#<li ng-repeat="account in accounts" ng-class="{ active: account.active }" class="treeview sidebar-menu-account">
-
-            </li>#}
+            <li ng-account-list
+                class="treeview sidebar-menu-account"
+                ng-repeat="organization in me.organizations"
+                account="organization">
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

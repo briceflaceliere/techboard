@@ -1,6 +1,6 @@
 teckboard.directive('ngAccountList', function() {
     return {
-        restrict: 'EC',
+        restrict: 'A',
         scope: { account : '=account' },
         templateUrl: function(elem,attrs) {
             var variant = attrs.variant || 'default';

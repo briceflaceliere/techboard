@@ -6,6 +6,8 @@
         <span>{{ account.name }}</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <li ng-repeat="board in account.boards" ng-class="{ active : board.active }"><a href="index.html"><i class="fa fa-circle-o"></i> {{ board.name }}</a></li>
+        <li ng-repeat="board in account.boards">
+            <a href="index.html"><i class="fa fa-circle-o"></i> {{ board.name }}</a>
+        </li>
     </ul>
 {% endverbatim %}

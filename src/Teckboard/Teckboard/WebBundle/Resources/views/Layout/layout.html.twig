@@ -41,28 +41,20 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-blue fixed">
-        <div id="loader-wrapper" data-loading>
-            <div id="loader-area">
-                <div class="sk-spinner sk-spinner-wave">
-                    <div class="sk-rect1"></div>
-                    <div class="sk-rect2"></div>
-                    <div class="sk-rect3"></div>
-                    <div class="sk-rect4"></div>
-                    <div class="sk-rect5"></div>
-                </div>
-            </div>
-        </div>
-        <div class="wrapper">
-            {% include "TeckboardWebBundle::Parcial/header.html.twig" %}
+    <body ng-class="{'loading': loading}" class="skin-blue fixed loading">
 
-            {% include "TeckboardWebBundle::Parcial/sidebar.html.twig" %}
+        {% include "TeckboardWebBundle:Parcial:main-loader.html.twig" %}
+
+        <div class="wrapper">
+            {% include "TeckboardWebBundle:Parcial:header.html.twig" %}
+
+            {% include "TeckboardWebBundle:Parcial:sidebar.html.twig" %}
 
             <div class="content-wrapper">
                 {% block content %}{% endblock %}
             </div>
 
-            {% include "TeckboardWebBundle::Parcial/footer.html.twig" %}
+            {% include "TeckboardWebBundle:Parcial:footer.html.twig" %}
         </div>
 
 
@@ -98,6 +90,9 @@
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/js/demo.js' output='js/compiled/lte.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
         {% javascripts
         '@TeckboardWebBundle/Resources/public/libs/angular/angular.min.js'

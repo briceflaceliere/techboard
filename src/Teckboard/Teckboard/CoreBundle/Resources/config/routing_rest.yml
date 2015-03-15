@@ -2,3 +2,8 @@ users :
   type: rest
   resource:     "TeckboardCoreBundle:Users"
   name_prefix:  api_user_
+
+organizations :
+  type: rest
+  resource:     "TeckboardCoreBundle:Organizations"
+  name_prefix:  api_organization_

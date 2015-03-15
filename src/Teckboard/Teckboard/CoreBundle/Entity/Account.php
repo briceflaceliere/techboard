@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
 use JMS\Serializer\Annotation as JMS;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity
@@ -37,6 +38,7 @@ abstract class Account implements \Serializable
      *
      * @JMS\Groups({"Me"})
      * @JMS\Expose
+     *
      * @var ArrayCollection $boards
      **/
     protected $boards;

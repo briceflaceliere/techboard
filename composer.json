@@ -25,7 +25,8 @@
         "friendsofsymfony/rest-bundle": "~1.5",
         "jms/serializer-bundle": "0.13.*",
         "nelmio/api-doc-bundle": "~2.8",
-        "willdurand/hateoas-bundle": "0.5.*"
+        "willdurand/hateoas-bundle": "0.5.*",
+        "friendsofsymfony/jsrouting-bundle": "~1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

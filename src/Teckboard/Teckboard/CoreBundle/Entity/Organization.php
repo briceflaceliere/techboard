@@ -8,12 +8,14 @@
 
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation as JMS;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * Class Organization
@@ -28,11 +30,22 @@ use JMS\Serializer\Annotation as JMS;
  *          )
  *      )
  * })
+ *
+ * @Hateoas\Relation(
+ *          "self",
+ *          href = @Hateoas\Route("api_organization_get_organizations", parameters = {"id" = "expr(object.getId())" })
+ * )
+ *
  * @JMS\ExclusionPolicy("all")
  */
 class Organization extends Account
 {
     use TimestampableTrait, NameTrait, CreateByTrait;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     /**
      * @var string
@@ -56,5 +69,37 @@ class Organization extends Account
     {
         $this->privateKey = $privateKey;
     }
+
+    /**
+     * List of linked users
+     *
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="organizations", cascade={"persist"})
+     *
+     * @var ArrayCollection $users
+     **/
+    protected $users;
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return $this
+     */
+    public function addUser(User $user)
+    {
+        $this->getUsers()->add($user);
+        $user->addOrganization($this);
+        return $this;
+    }
+
+
+
 
 }

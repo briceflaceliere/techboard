@@ -24,7 +24,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user->setName('test');
+        $user->setName('test-user');
 
         $encoder = $this->getContainer()
             ->get('security.encoder_factory')

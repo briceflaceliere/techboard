@@ -20,8 +20,8 @@ use Teckboard\Teckboard\CoreBundle\Entity\User;
 trait CreateByTrait {
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="createdBoard")
-     * @ORM\JoinColumn(name="create_by_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="create_by_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
      * @var User $createBy
      **/
