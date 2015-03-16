@@ -1,5 +1,12 @@
 {% extends "TeckboardWebBundle::Layout/layout.html.twig" %}
 
+{% block jsInline %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var defaultBoardUrl = '{{ defaultBoardUrl|raw  }}';
+    </script>
+{% endblock %}
+
 {% block content %}
     <!-- Content Header (Page header) -->
     {% include "TeckboardWebBundle::Parcial/content-header.html.twig" %}

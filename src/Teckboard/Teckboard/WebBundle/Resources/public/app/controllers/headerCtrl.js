@@ -1,10 +1,10 @@
 /**
  * Side bar controller
  */
-teckboard.controller('headerCtrl', ['$scope', 'Users',
-    function ($scope, Users) {
-        Users.one('me').get().then(function(user) {
-            $scope.me = user;
+teckboard.controller('headerCtrl', ['$scope',
+    function ($scope) {
+        MeManager.getMe().then(function(me){
+            $scope.me = me;
         });
     }
 ]);

@@ -15,7 +15,9 @@ class DashboardController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        $defaultBoard = $this->getUser()->getBoards()->first();
+        $url = '/board/' . \Gedmo\Sluggable\Util\Urlizer::urlize($defaultBoard->getName()) . '/' . $defaultBoard->getId();
+        return ['defaultBoardUrl' => $url];
     }
 
     /**

@@ -6,7 +6,8 @@ teckboard.config(['$routeProvider', '$locationProvider',
                 controller: 'boardCtrl',
                 controllerAs: 'board'
             }).otherwise({
-                redirectTo: '/board/test/1'
+                redirectTo: defaultBoardUrl
             });
+
         $locationProvider.html5Mode(true);
-    }])
+    }]);

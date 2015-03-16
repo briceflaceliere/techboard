@@ -1,12 +1,13 @@
 /**
  * Side bar controller
  */
-teckboard.controller('mainSideBarCtrl', ['$scope', 'Users', 'Restangular',
-    function ($scope, Users, Restangular) {
+teckboard.controller('mainSideBarCtrl', ['$scope', 'MeManager', 'Restangular',
+    function ($scope, MeManager, Restangular) {
 
-        Users.one('me').get().then(function(user) {
-             $scope.me = user;
+        MeManager.getMe().then(function(me){
+            $scope.me = me;
         });
+
 
 
     }
