@@ -10,6 +10,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait NameTrait {
 
@@ -36,6 +37,32 @@ trait NameTrait {
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=125, unique=true)
+     * @JMS\Expose()
+     */
+    private $slugName;
+
+    /**
+     * @return mixed
+     */
+    public function getSlugName()
+    {
+        return $this->slugName;
+    }
+
+    /**
+     * @param mixed $slugName
+     *
+     * @return $this
+     */
+    public function setSlugName($slugName)
+    {
+        $this->slugName = $slugName;
         return $this;
     }
 
