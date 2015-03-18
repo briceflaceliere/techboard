@@ -7,7 +7,7 @@
 </a>
 <ul class="treeview-menu">
     <li ng-repeat="board in account.boards">
-        <a href="board/{{ board.slugName }}/{{ board.id }}"><i class="fa fa-circle-o"></i> {{ board.name }}</a>
+        <a href="/dashboard/board/{{ board.name | slugify }}/{{ board.id }}"><i class="fa fa-circle-o"></i> {{ board.name }}</a>
     </li>
 </ul>
 {% endverbatim %}

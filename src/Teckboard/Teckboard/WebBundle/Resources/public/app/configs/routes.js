@@ -1,15 +1,15 @@
 teckboard.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
         $routeProvider
-            .when('/', {
+            .when('/dashboards', {
                 template: '<p>HOME</p>'
             })
-            .when('/board/:slug/:boardId', {
+            .when('/dashboards/board/:slug/:boardId', {
                 templateUrl: '/dashboards/template/board.default',
                 controller: 'boardCtrl',
                 controllerAs: 'board'
             }).otherwise({
-                redirectTo: '/'
+                redirectTo: '/dashboards'
             });
 
         $locationProvider.html5Mode(true);
