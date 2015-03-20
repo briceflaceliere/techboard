@@ -7,3 +7,8 @@ organizations :
   type: rest
   resource:     "TeckboardCoreBundle:Organizations"
   name_prefix:  api_organization_
+
+boards :
+  type: rest
+  resource:     "TeckboardCoreBundle:Boards"
+  name_prefix:  api_board_

@@ -7,7 +7,6 @@ teckboard.service('MeManager', ['Restangular', 'UsersManager', function(Restangu
     that.getMe = function() {
         if (me == null) {
             me = that.api.one('me').get();
-            console.log('test');
         }
         return me;
     }

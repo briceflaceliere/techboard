@@ -15,6 +15,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation as JMS;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * Class Board
@@ -23,6 +24,10 @@ use JMS\Serializer\Annotation as JMS;
  * @JMS\ExclusionPolicy("all")
  * @ORM\Entity(repositoryClass="Teckboard\Teckboard\CoreBundle\Repository\BoardRepository")
  *
+ * @Hateoas\Relation(
+ *          "self",
+ *          href = @Hateoas\Route("api_board_get_boards", parameters = {"id" = "expr(object.getId())" })
+ * )
  */
 class Board
 {
@@ -31,6 +36,8 @@ class Board
     /**
      * @ORM\ManyToOne(targetEntity="Account", inversedBy="boards")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
+     * @JMS\Expose
+     * @JMS\Groups({"BoardDetail"})
      *
      * @var Account $account
      **/

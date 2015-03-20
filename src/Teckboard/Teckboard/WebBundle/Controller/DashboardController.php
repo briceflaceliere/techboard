@@ -10,7 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class DashboardController extends Controller
 {
     /**
-     * @Route("/dashboards")
+     * @Route("/")
+     * @Route("/board/{id}", requirements={"id" = "\d+"})
+     * @Route("/board/{slugName}/{id}", requirements={"id" = "\d+"})
      * @Template()
      */
     public function indexAction()

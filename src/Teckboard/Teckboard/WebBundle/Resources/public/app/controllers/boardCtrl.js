@@ -1,4 +1,14 @@
-teckboard.controller('boardCtrl', ['$routeParams', function($routeParams) {
+teckboard.controller('boardCtrl', ['$scope', '$rootScope', '$routeParams', 'BoardManager',  function($scope, $rootScope, $routeParams,BoardManager) {
+    BoardManager.get($routeParams.boardId).then(function(board){
+        $scope.board = board;
 
-    console.log($routeParams);
+        $rootScope.page = {
+            title: $scope.board.name,
+            subTitle: $scope.board.account.name,
+            picture: $scope.board.account.picture
+            };
+        console.log(board);
+
+    });
+
 }])
