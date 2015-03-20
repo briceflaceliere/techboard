@@ -12,3 +12,8 @@ boards :
   type: rest
   resource:     "TeckboardCoreBundle:Boards"
   name_prefix:  api_board_
+
+widgets :
+  type: rest
+  resource:     "TeckboardCoreBundle:Widgets"
+  name_prefix:  api_widget_

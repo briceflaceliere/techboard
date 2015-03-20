@@ -33,6 +33,11 @@ class Board
 {
     use IdTrait, TimestampableTrait, NameTrait, CreateByTrait;
 
+    public function __construct()
+    {
+        $this->widgets = new ArrayCollection();
+    }
+
     /**
      * @ORM\ManyToOne(targetEntity="Account", inversedBy="boards")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
@@ -60,7 +65,34 @@ class Board
         return $this;
     }
 
+    /**
+     * @ORM\OneToMany(targetEntity="Widget", mappedBy="board", cascade={"all"})
+     * @ORM\OrderBy({"position" = "ASC"})
+     *
+     * @JMS\Groups({"BoardDetail"})
+     * @JMS\Expose
+     *
+     * @var ArrayCollection $widgets
+     **/
+    protected $widgets;
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getWidgets()
+    {
+        return $this->widgets;
+    }
+
+    /**
+     * @param ArrayCollection $widgets
+     * @return $this
+     */
+    public function setWidgets(ArrayCollection $widgets)
+    {
+        $this->widgets = $widgets;
+        return $this;
+    }
 
 
 }
