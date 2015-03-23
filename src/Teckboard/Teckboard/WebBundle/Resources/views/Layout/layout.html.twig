@@ -23,8 +23,10 @@
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/plugins/datepicker/datepicker3.css'
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css'
         '@TeckboardWebBundle/Resources/public/libs/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'
+        '@TeckboardWebBundle/Resources/public/libs/jquery-ui/themes/black-tie/jquery-ui.min.css'
         '@TeckboardWebBundle/Resources/public/libs/angular-loading-bar/build/loading-bar.min.css'
         '@TeckboardWebBundle/Resources/public/libs/spinkit/css/spinners/3-wave.css'
+        '@TeckboardWebBundle/Resources/public/libs/gridstack.js/dist/gridstack.min.css'
         filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" output='css/compiled/lte.css' />
         {% endstylesheets %}
@@ -93,8 +95,10 @@
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
         {% javascripts
-        '@TeckboardWebBundle/Resources/public/libs/angular/angular.min.js'
         '@TeckboardWebBundle/Resources/public/libs/lodash/dist/lodash.min.js'
+        '@TeckboardWebBundle/Resources/public/libs/jquery-ui/jquery-ui.min.js'
+        '@TeckboardWebBundle/Resources/public/libs/gridstack.js/dist/gridstack.min.js'
+        '@TeckboardWebBundle/Resources/public/libs/angular/angular.min.js'
         '@TeckboardWebBundle/Resources/public/libs/restangular/dist/restangular.min.js'
         '@TeckboardWebBundle/Resources/public/libs/angular-route/angular-route.min.js'
         '@TeckboardWebBundle/Resources/public/libs/angular-loading-bar/build/loading-bar.min.js'
