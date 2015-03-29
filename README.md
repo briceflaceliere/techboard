@@ -23,6 +23,6 @@ Install
 General informations 
 --------------
 
-** Test username ** : test-user / test
+** Test username ** : test-user / 0000
 
 ** API Documentation URL ** : `/doc/api`
