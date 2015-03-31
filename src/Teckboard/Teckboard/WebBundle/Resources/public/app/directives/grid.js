@@ -1,8 +1,9 @@
 teckboard.directive('ngGrid', function() {
     return {
-        restrict: 'E',
+        restrict: 'C',
         transclude: true,
         scope: {},
+        template: '<ng-transclude></ng-transclude>',
         link: function(scope, element, attrs) {
             var options = {
                 height: 80,
