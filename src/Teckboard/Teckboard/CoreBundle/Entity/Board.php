@@ -67,7 +67,7 @@ class Board
 
     /**
      * @ORM\OneToMany(targetEntity="Widget", mappedBy="board", cascade={"all"})
-     * @ORM\OrderBy({"position" = "ASC"})
+     * @ORM\OrderBy({"positionX" = "ASC", "positionY" = "ASC"})
      *
      * @JMS\Groups({"BoardDetail"})
      * @JMS\Expose

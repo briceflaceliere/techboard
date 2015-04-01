@@ -1,15 +1,26 @@
 teckboard.directive('ngGrid', function() {
     return {
         restrict: 'C',
-        transclude: true,
-        scope: {},
-        template: '<ng-transclude></ng-transclude>',
+        scope: { board : '='},
+        template: '',
         link: function(scope, element, attrs) {
             var options = {
                 height: 80,
-                margin: 10
+                margin: 10,
+                handle: '.grid-stack-item-header'
             };
-            $(element).gridstack(options);
+
+            $(element).gridstack(options)
+                      .on('change', function (e, items) {
+                         $(items).each(function(item) {
+                             scope = angular.element(this.el).scope();
+                             scope.widget.position_x = this.x;
+                             scope.widget.position_y = this.y;
+                             scope.widget.height = this.width;
+                             scope.widget.width = this.height;
+                         });
+                         $(this).scope().changeWidgetPosition();
+                      });
         }
     };
 });

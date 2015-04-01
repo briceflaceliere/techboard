@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
-use Teckboard\Teckboard\CoreBundle\Entity\Traits\PositionTrait;
+use Teckboard\Teckboard\CoreBundle\Entity\Traits\GridTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation as JMS;
 use Hateoas\Configuration\Annotation as Hateoas;
@@ -32,7 +32,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
  */
 class Widget
 {
-    use IdTrait, TimestampableTrait, NameTrait, CreateByTrait, PositionTrait;
+    use IdTrait, TimestampableTrait, NameTrait, CreateByTrait, GridTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Board", inversedBy="widgets")

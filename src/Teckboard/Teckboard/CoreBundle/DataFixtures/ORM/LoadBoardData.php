@@ -30,21 +30,30 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
 
         $widget = new Widget();
         $widget->setName('Widget 1')
-               ->setPosition(0)
+               ->setPositionX(0)
+               ->setPositionY(0)
+               ->setWidth(3)
+               ->setHeight(3)
                ->setCreateBy($this->getReference('test-user'))
                ->setBoard($board);
         $board->getWidgets()->add($widget);
 
         $widget2 = new Widget();
         $widget2->setName('Widget 2')
-               ->setPosition(2)
-               ->setCreateBy($this->getReference('test-user'))
-               ->setBoard($board);
+                ->setPositionX(6)
+                ->setPositionY(3)
+                ->setWidth(2)
+                ->setHeight(3)
+                ->setCreateBy($this->getReference('test-user'))
+                ->setBoard($board);
         $board->getWidgets()->add($widget2);
 
         $widget3 = new Widget();
         $widget3->setName('Widget 3')
-               ->setPosition(1)
+                ->setPositionX(3)
+                ->setPositionY(0)
+                ->setWidth(3)
+                ->setHeight(2)
                ->setCreateBy($this->getReference('test-user'))
                ->setBoard($board);
         $board->getWidgets()->add($widget3);
