@@ -12,6 +12,7 @@ namespace Teckboard\Teckboard\CoreBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Request;
 
 class BoardsController extends FOSRestController {
 
@@ -33,4 +34,22 @@ class BoardsController extends FOSRestController {
         return $board;
     }
 
+    /**
+     * Put specific board information
+     *
+     * @ApiDoc
+     * @View(serializerGroups={"Default", "BoardDetail"})
+     * @param int $id board id
+     * @return mixed
+     */
+    public function putBoardsWidgetsPositionsAction(Request $request, $id)
+    {
+        $widgets = $request->get('widgets');
+        $board = $this->getDoctrine()->getRepository('TeckboardCoreBundle:Board')->find($id);
+
+        if(!is_object($board)){
+            throw $this->createNotFoundException();
+        }
+        return $board;
+    }
 } 

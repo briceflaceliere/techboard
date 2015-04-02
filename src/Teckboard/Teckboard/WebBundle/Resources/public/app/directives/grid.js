@@ -18,6 +18,7 @@ teckboard.directive('ngGrid', function() {
                              scope.widget.position_y = this.y;
                              scope.widget.height = this.width;
                              scope.widget.width = this.height;
+                             scope.$digest();
                          });
                          $(this).scope().changeWidgetPosition();
                       });

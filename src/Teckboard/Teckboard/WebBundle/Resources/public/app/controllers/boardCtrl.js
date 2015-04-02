@@ -7,11 +7,11 @@ teckboard.controller('boardCtrl', ['$scope', '$rootScope', '$routeParams', 'Boar
             subTitle: $scope.board.account.name,
             picture: $scope.board.account.picture
             };
-
     });
 
 
     $scope.changeWidgetPosition = function() {
-        console.log($scope.board.widgets[0].position_x, $scope.board.widgets[0].position_y, $scope.board.widgets[0].width, $scope.board.widgets[0].height);
+        BoardManager.changeWidgetPosition($scope.board);
     };
+
 }])
