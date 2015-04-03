@@ -50,6 +50,20 @@ class BoardsController extends FOSRestController {
         if(!is_object($board)){
             throw $this->createNotFoundException();
         }
-        return $board;
+
+        $form = $this->createForm("boardWidgets", $board, array(
+            'method' => 'PUT',
+            'csrf_protection' => false,
+        ));
+
+        $form->handleRequest($request);
+var_dump($form->isValid(), $form->isSubmitted());
+        if ($form->isValid()) {
+
+        }
+        var_dump($board->getWidgets()[0]->getPositionX());exit();
+        return array(
+            'form' => $form,
+        );
     }
 } 

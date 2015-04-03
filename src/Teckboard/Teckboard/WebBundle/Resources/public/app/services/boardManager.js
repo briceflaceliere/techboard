@@ -16,6 +16,6 @@ teckboard.service('BoardManager', ['Restangular', function(Restangular) {
                                   height: this.height });
         });
 
-        that.api.one(board.id).customPUT({widgets : widgetPosition}, "widgets/positions");
+        that.api.one(board.id).customPUT({boardWidgets : {widgets : widgetPosition}}, "widgets/positions");
     };
 }]);

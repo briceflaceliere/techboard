@@ -14,6 +14,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\PictureTrait;
 use JMS\Serializer\Annotation as JMS;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity

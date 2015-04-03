@@ -10,12 +10,18 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 trait GridTrait {
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      * @JMS\Expose
+     *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\LessThanOrEqual(value=0)
      *
      * @var integer
      */
@@ -41,8 +47,12 @@ trait GridTrait {
     }
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      * @JMS\Expose
+     *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\LessThanOrEqual(value=0)
      *
      * @var integer
      */
@@ -68,8 +78,12 @@ trait GridTrait {
     }
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      * @JMS\Expose
+     *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(value=0)
      *
      * @var integer
      */
@@ -95,14 +109,16 @@ trait GridTrait {
     }
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      * @JMS\Expose
+     *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(value=0)
      *
      * @var integer
      */
     private $width;
-
-
 
     /**
      * @return int

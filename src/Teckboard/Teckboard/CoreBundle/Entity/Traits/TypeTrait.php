@@ -10,6 +10,8 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class TypeTrait
@@ -20,6 +22,8 @@ trait TypeTrait {
     /**
      * @ORM\Column(type="string", nullable=false, length=100)
      * @JMS\Expose
+     *
+     * @Assert\NotBlank()
      *
      * @var string $type
      **/
@@ -47,5 +51,18 @@ trait TypeTrait {
     public function getType()
     {
         return $this->type;
+    }
+
+    public function validateType(ExecutionContextInterface $context)
+    {
+        // Vérifie si le nom est bidon
+        if (!in_array($this->getType(), self::$listTypeConst)) {
+            $context->addViolationAt(
+                'type',
+                'The type is invalid',
+                array(),
+                null
+            );
+        }
     }
 }

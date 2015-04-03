@@ -17,6 +17,7 @@ use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation as JMS;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User

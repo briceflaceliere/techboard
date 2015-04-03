@@ -10,12 +10,15 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 trait PositionTrait {
 
     /**
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     *
+     * @Assert\Type(type="integer")
      *
      * @var integer
      */

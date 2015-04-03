@@ -10,13 +10,15 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 trait PictureTrait {
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @JMS\Expose
+     *
+     * @Assert\Type(type="string")
      *
      * @var string
      */

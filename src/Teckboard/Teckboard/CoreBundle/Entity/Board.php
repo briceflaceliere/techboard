@@ -9,13 +9,17 @@
 namespace Teckboard\Teckboard\CoreBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\CreateByTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\IdTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\NameTrait;
 use Teckboard\Teckboard\CoreBundle\Entity\Traits\TimestampableTrait;
 use JMS\Serializer\Annotation as JMS;
 use Hateoas\Configuration\Annotation as Hateoas;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Board
@@ -43,6 +47,8 @@ class Board
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      * @JMS\Expose
      * @JMS\Groups({"BoardDetail"})
+     *
+     * @Assert\NotNull()
      *
      * @var Account $account
      **/
@@ -85,14 +91,54 @@ class Board
     }
 
     /**
-     * @param ArrayCollection $widgets
+     * @param Collection $widgets
      * @return $this
      */
-    public function setWidgets(ArrayCollection $widgets)
+    public function setWidgets(Collection $widgets)
     {
         $this->widgets = $widgets;
         return $this;
     }
 
+    /**
+     * @Assert\Callback
+     */
+    public function validateWidgetsPositions(ExecutionContextInterface $context)
+    {
+        $widgetChecked = [];
+
+        foreach ($this->getWidgets() as $widget1) {
+            foreach ($this->getWidgets() as $widget2) {
+                if ($widget1->getId() == $widget2->getId()) {
+                    continue;
+                }
+
+                $minId = min($widget1->getId(), $widget2->getId());
+                $maxId = max($widget1->getId(), $widget2->getId());
+
+                if (isset($widgetChecked[$minId][$maxId])) {
+                    continue;
+                }
+
+                $left = max($widget1->getPositionX(), $widget2->getPositionX());
+                $right = min($widget1->getPositionX() + $widget1->getWidth(), $widget2->getPositionX() + $widget2->getWidth());
+                $bottom = max($widget1->getPositionY(), $widget2->getPositionY());
+                $top = min($widget1->getPositionY() + $widget1->getHeight(), $widget2->getPositionY() + $widget2->getHeight());
+
+                if ($left < $right || $bottom < $top) {
+                    $context->addViolationAt(
+                        'widgets',
+                        'Detected collision widgets',
+                        array(),
+                        null
+                    );
+                    return;
+                }
+
+
+                $widgetChecked[$minId][$maxId] = true;
+            }
+        }
+    }
 
 }
