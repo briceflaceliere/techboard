@@ -16,11 +16,11 @@ teckboard.directive('ngGrid', function() {
                              scope = angular.element(this.el).scope();
                              scope.widget.position_x = this.x;
                              scope.widget.position_y = this.y;
-                             scope.widget.height = this.width;
-                             scope.widget.width = this.height;
+                             scope.widget.height = this.height;
+                             scope.widget.width = this.width;
                              scope.$digest();
                          });
-                         $(this).scope().changeWidgetPosition();
+                         $(this).scope().changeWidgetsPosition();
                       });
         }
     };

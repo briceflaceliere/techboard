@@ -21,7 +21,7 @@ trait GridTrait {
      *
      * @Assert\Type(type="integer")
      * @Assert\NotBlank()
-     * @Assert\LessThanOrEqual(value=0)
+     * @Assert\GreaterThanOrEqual(value=0)
      *
      * @var integer
      */
@@ -42,7 +42,7 @@ trait GridTrait {
      */
     public function setPositionX($positionX)
     {
-        $this->positionX = $positionX;
+        $this->positionX = (int)$positionX;
         return $this;
     }
 
@@ -52,7 +52,7 @@ trait GridTrait {
      *
      * @Assert\Type(type="integer")
      * @Assert\NotBlank()
-     * @Assert\LessThanOrEqual(value=0)
+     * @Assert\GreaterThanOrEqual(value=0)
      *
      * @var integer
      */
@@ -73,7 +73,7 @@ trait GridTrait {
      */
     public function setPositionY($positionY)
     {
-        $this->positionY = $positionY;
+        $this->positionY = (int)$positionY;
         return $this;
     }
 
@@ -104,7 +104,7 @@ trait GridTrait {
      */
     public function setHeight($height)
     {
-        $this->height = $height;
+        $this->height = (int)$height;
         return $this;
     }
 
@@ -135,7 +135,7 @@ trait GridTrait {
      */
     public function setWidth($width)
     {
-        $this->width = $width;
+        $this->width = (int)$width;
         return $this;
     }
 

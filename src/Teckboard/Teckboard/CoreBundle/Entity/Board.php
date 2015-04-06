@@ -73,7 +73,7 @@ class Board
 
     /**
      * @ORM\OneToMany(targetEntity="Widget", mappedBy="board", cascade={"all"})
-     * @ORM\OrderBy({"positionX" = "ASC", "positionY" = "ASC"})
+     * @ORM\OrderBy({"id" = "ASC"})
      *
      * @JMS\Groups({"BoardDetail"})
      * @JMS\Expose
@@ -122,10 +122,10 @@ class Board
 
                 $left = max($widget1->getPositionX(), $widget2->getPositionX());
                 $right = min($widget1->getPositionX() + $widget1->getWidth(), $widget2->getPositionX() + $widget2->getWidth());
-                $bottom = max($widget1->getPositionY(), $widget2->getPositionY());
-                $top = min($widget1->getPositionY() + $widget1->getHeight(), $widget2->getPositionY() + $widget2->getHeight());
+                $bottom = max(1, 1);
+                $top = min(1 + $widget1->getHeight(), 1 + $widget2->getHeight());
 
-                if ($left < $right || $bottom < $top) {
+                if ($left < $right && $bottom < $top) {
                     $context->addViolationAt(
                         'widgets',
                         'Detected collision widgets',
@@ -134,7 +134,6 @@ class Board
                     );
                     return;
                 }
-
 
                 $widgetChecked[$minId][$maxId] = true;
             }

@@ -1,4 +1,4 @@
-teckboard.service('BoardManager', ['Restangular', function(Restangular) {
+teckboard.service('BoardManager', ['Restangular', '$q', function(Restangular, $q) {
     var that = this;
     that.api = Restangular.service('boards');
 
@@ -6,16 +6,22 @@ teckboard.service('BoardManager', ['Restangular', function(Restangular) {
         return that.api.one(id).get();
     };
 
-    that.changeWidgetPosition = function(board) {
-        var widgetPosition = new Array();
+
+    var boardDefer = [];
+    that.changeWidgetsPosition = function(board) {
+        var widgetPosition = {};
         $.each(board.widgets, function() {
-            widgetPosition.push({ id: this.id,
-                                  position_x: this.position_x,
-                                  position_y: this.position_y,
-                                  width: this.width,
-                                  height: this.height });
+            widgetPosition[this.id] = ({position_x: this.position_x,
+                                        position_y: this.position_y,
+                                        width: this.width,
+                                        height: this.height });
         });
 
-        that.api.one(board.id).customPUT({boardWidgets : {widgets : widgetPosition}}, "widgets/positions");
+        if (boardDefer[board.id] != undefined) {
+            boardDefer[board.id].resolve();
+            delete boardDefer[board.id];
+        }
+        boardDefer[board.id] = $q.defer();
+        return that.api.one(board.id).withHttpConfig({timeout: boardDefer[board.id].promise}).customPUT({widgets : widgetPosition}, "widgets/positions");
     };
 }]);

@@ -9,10 +9,13 @@
 namespace Teckboard\Teckboard\CoreBundle\Controller;
 
 
+use Doctrine\Common\Proxy\Exception\InvalidArgumentException;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Util\Codes;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class BoardsController extends FOSRestController {
 
@@ -31,7 +34,7 @@ class BoardsController extends FOSRestController {
         if(!is_object($board)){
             throw $this->createNotFoundException();
         }
-        return $board;
+        return $this->handleView(\FOS\RestBundle\View\View::create($board));
     }
 
     /**
@@ -44,26 +47,44 @@ class BoardsController extends FOSRestController {
      */
     public function putBoardsWidgetsPositionsAction(Request $request, $id)
     {
-        $widgets = $request->get('widgets');
         $board = $this->getDoctrine()->getRepository('TeckboardCoreBundle:Board')->find($id);
 
-        if(!is_object($board)){
+        if (!is_object($board)) {
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm("boardWidgets", $board, array(
-            'method' => 'PUT',
-            'csrf_protection' => false,
-        ));
-
-        $form->handleRequest($request);
-var_dump($form->isValid(), $form->isSubmitted());
-        if ($form->isValid()) {
-
+        if (!$newPositions = $request->get('widgets')) {
+            throw new InvalidArgumentException('Widget data not found');
         }
-        var_dump($board->getWidgets()[0]->getPositionX());exit();
-        return array(
-            'form' => $form,
-        );
+
+        $validator = $this->get('validator');
+
+        $errorList = new ConstraintViolationList();
+
+        //Hydrate widgets entity
+        foreach ($board->getWidgets() as $widgetEntity) {
+            if (isset($newPositions[$widgetEntity->getId()])) {
+                $newPosition = $newPositions[$widgetEntity->getId()];
+                $widgetEntity->setPositionX($newPosition['position_x'])
+                             ->setPositionY($newPosition['position_y'])
+                             ->setWidth($newPosition['width'])
+                             ->setHeight($newPosition['height']);
+                $errorList->addAll($validator->validate($widgetEntity));
+            }
+        }
+
+        $errorList->addAll($validator->validate($board));
+
+        if (count($errorList) == 0) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($board);
+            $em->flush();
+
+            $view = \FOS\RestBundle\View\View::create(null, Codes::HTTP_NO_CONTENT);
+        } else {
+            $view = \FOS\RestBundle\View\View::create($errorList, Codes::HTTP_BAD_REQUEST);
+        }
+
+        return $this->handleView($view);
     }
 } 

@@ -2,7 +2,20 @@ body.loading {
   height: 100%;
   overflow: hidden;
 }
-#loader-wrapper {
+body.loading > .loader-wrapper {
+  background-color: #3c8dbc !important;
+}
+body.loading > .loader-wrapper .sk-spinner-wave div {
+  background-color: #ffffff;
+}
+.ng-loader {
+  position: relative;
+}
+.loader-wrapper {
+  display: none;
+}
+.loading > .loader-wrapper {
+  display: block !important;
   margin: auto;
   position: absolute;
   right: 0;
@@ -12,7 +25,7 @@ body.loading {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 2000;
 }
-#loader-wrapper #loader-area {
+.loading > .loader-wrapper .loader-area {
   -moz-user-select: none;
   bottom: 60px;
   height: 60px;
@@ -23,6 +36,6 @@ body.loading {
   top: 0;
   width: 60px;
 }
-#loader-wrapper .sk-spinner-wave div {
+.loading > .loader-wrapper .sk-spinner-wave div {
   background-color: #3c8dbc;
 }

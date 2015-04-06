@@ -2,7 +2,7 @@ teckboard.config(function(RestangularProvider){
     // Set the base url for your API endpoints
     RestangularProvider.setBaseUrl("/api");
     RestangularProvider.setRequestSuffix('.json');
-    RestangularProvider.setDefaultHttpFields({ cache: true });
+    RestangularProvider.setDefaultHttpFields({ cache: false });
 
     // Set an interceptor in order to parse the API response
     // when getting a list of resources

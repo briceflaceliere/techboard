@@ -10,12 +10,16 @@ namespace Teckboard\Teckboard\CoreBundle\Form\Type;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class WidgetType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('position_x', 'hidden')
@@ -28,7 +32,6 @@ class WidgetType extends AbstractType
     {
         return 'widget';
     }
-
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
