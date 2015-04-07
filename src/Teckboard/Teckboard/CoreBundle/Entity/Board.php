@@ -122,8 +122,8 @@ class Board
 
                 $left = max($widget1->getPositionX(), $widget2->getPositionX());
                 $right = min($widget1->getPositionX() + $widget1->getWidth(), $widget2->getPositionX() + $widget2->getWidth());
-                $bottom = max(1, 1);
-                $top = min(1 + $widget1->getHeight(), 1 + $widget2->getHeight());
+                $bottom = max($widget1->getPositionY(), $widget2->getPositionY());
+                $top = min($widget1->getPositionY() + $widget1->getHeight(), $widget2->getPositionY() + $widget2->getHeight());
 
                 if ($left < $right && $bottom < $top) {
                     $context->addViolationAt(

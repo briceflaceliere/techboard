@@ -53,6 +53,8 @@ class Widget
 
     /**
      * @param Board $board
+     *
+     * @return $this
      */
     public function setBoard($board)
     {
@@ -60,6 +62,31 @@ class Widget
         return $this;
     }
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Connector", inversedBy="widgets")
+     * @ORM\JoinColumn(name="connector_id", referencedColumnName="id", nullable=false)
+     *
+     * @var Connector $connector
+     **/
+    protected $connector;
 
+    /**
+     * @return Connector
+     */
+    public function getConnector()
+    {
+        return $this->connector;
+    }
+
+    /**
+     * @param Connector $connector
+     *
+     * @return $this
+     */
+    public function setConnector($connector)
+    {
+        $this->connector = $connector;
+        return $this;
+    }
 
 }

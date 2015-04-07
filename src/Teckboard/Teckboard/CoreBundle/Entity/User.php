@@ -86,28 +86,7 @@ class User extends Account implements UserInterface, EquatableInterface
         $this->password = $password;
     }
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    protected $privateKey;
 
-    /**
-     * @return string
-     */
-    public function getPrivateKey()
-    {
-        return $this->privateKey;
-    }
-
-    /**
-     * @param string $privateKey
-     */
-    public function setPrivateKey($privateKey)
-    {
-        $this->privateKey = $privateKey;
-    }
 
 
     /**

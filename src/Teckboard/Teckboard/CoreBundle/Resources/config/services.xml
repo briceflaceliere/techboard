@@ -13,6 +13,9 @@
                  class="Teckboard\Teckboard\CoreBundle\Form\Type\WidgetType">
             <tag name="form.type" alias="widget" />
         </service>
+        <service id="teckboard_core.service.securityKey"
+                 class="Teckboard\Teckboard\CoreBundle\Form\Type\SecurityKeyService">
+        </service>
     </services>
     <!--
 

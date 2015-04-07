@@ -35,6 +35,7 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
                ->setWidth(3)
                ->setHeight(3)
                ->setCreateBy($this->getReference('test-user'))
+               ->setConnector($this->getReference('test-connector'))
                ->setBoard($board);
         $board->getWidgets()->add($widget);
 
@@ -45,6 +46,7 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
                 ->setWidth(2)
                 ->setHeight(3)
                 ->setCreateBy($this->getReference('test-user'))
+                ->setConnector($this->getReference('test-connector'))
                 ->setBoard($board);
         $board->getWidgets()->add($widget2);
 
@@ -54,8 +56,9 @@ class LoadBoardData extends AbstractFixture implements OrderedFixtureInterface {
                 ->setPositionY(0)
                 ->setWidth(3)
                 ->setHeight(2)
-               ->setCreateBy($this->getReference('test-user'))
-               ->setBoard($board);
+                ->setCreateBy($this->getReference('test-user'))
+                ->setConnector($this->getReference('test-connector'))
+                ->setBoard($board);
         $board->getWidgets()->add($widget3);
 
 
