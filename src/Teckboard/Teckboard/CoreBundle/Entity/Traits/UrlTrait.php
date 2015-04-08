@@ -19,6 +19,8 @@ trait UrlTrait {
      * @var string
      *
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @JMS\Expose
      */
     protected $url;
 

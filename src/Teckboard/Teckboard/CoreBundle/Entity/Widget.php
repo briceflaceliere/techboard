@@ -66,6 +66,9 @@ class Widget
      * @ORM\ManyToOne(targetEntity="Connector", inversedBy="widgets")
      * @ORM\JoinColumn(name="connector_id", referencedColumnName="id", nullable=false)
      *
+     * @JMS\Groups({"BoardDetail"})
+     * @JMS\Expose
+     *
      * @var Connector $connector
      **/
     protected $connector;
@@ -87,6 +90,36 @@ class Widget
     {
         $this->connector = $connector;
         return $this;
+    }
+
+    /**
+     * @var integer
+     */
+    protected $expire;
+
+    /**
+     * @JMS\VirtualProperty
+     * @JMS\SerializedName("expire")
+     *
+     * @return string
+     */
+    public function getExpire()
+    {
+        if ($this->expire == null) {
+            $this->expire = (int)(time() + (60 * 60 * 2));
+        }
+        return $this->expire;
+    }
+
+    /**
+     * @JMS\VirtualProperty
+     * @JMS\SerializedName("token")
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return hash('sha1', $this->getId().$this->getExpire().$this->getConnector()->getPrivateKey());
     }
 
 }

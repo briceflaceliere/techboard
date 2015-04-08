@@ -86,9 +86,6 @@ class User extends Account implements UserInterface, EquatableInterface
         $this->password = $password;
     }
 
-
-
-
     /**
      * Returns the username used to authenticate the user.
      *

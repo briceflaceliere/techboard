@@ -42,9 +42,6 @@ class Connector
      * @ORM\OneToMany(targetEntity="Widget", mappedBy="connector", cascade={"all"})
      * @ORM\OrderBy({"id" = "ASC"})
      *
-     * @JMS\Groups({"BoardDetail"})
-     * @JMS\Expose
-     *
      * @var ArrayCollection $widgets
      **/
     protected $widgets;
@@ -66,9 +63,5 @@ class Connector
         $this->widgets = $widgets;
         return $this;
     }
-
-
-
-
 
 }
