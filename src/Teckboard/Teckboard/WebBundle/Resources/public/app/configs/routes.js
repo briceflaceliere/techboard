@@ -1,5 +1,5 @@
-teckboard.config(['$routeProvider', '$locationProvider',
-    function($routeProvider, $locationProvider) {
+teckboard.config(['$routeProvider', '$locationProvider', '$compileProvider',
+    function($routeProvider, $locationProvider, $compileProvider) {
         $routeProvider
             .when('/', {
                 template: '<p>HOME</p>'
@@ -18,4 +18,5 @@ teckboard.config(['$routeProvider', '$locationProvider',
             });
 
         $locationProvider.html5Mode(true);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
     }]);

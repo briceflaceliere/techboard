@@ -5,12 +5,8 @@
         <h3 class="box-title">{{ widget.name }}</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac est sed dolor posuere facilisis eu at orci. In sapien ante, vestibulum in nisi at, luctus pellentesque neque. Mauris nec dolor ligula. Nulla eu ligula non velit accumsan fringilla sit amet eget neque. Nunc eget sem purus. Sed hendrerit ante sed erat mattis vehicula vel non nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris posuere bibendum quam, at tristique quam semper ac.
-
-            Maecenas vitae bibendum turpis, nec iaculis quam. Quisque sed luctus leo. Proin tortor purus, lacinia ac accumsan non, fringilla et mi. Donec gravida pellentesque ligula id euismod. Etiam rutrum et augue in fermentum. Nullam a enim vitae diam fringilla pellentesque sed id nibh. Sed posuere enim a sapien porta, aliquet commodo turpis pharetra. In sit amet sapien in sem rhoncus blandit eu ac leo.
-
-            Suspendisse luctus lorem id lorem facilisis, ut dictum tortor mattis. Vestibulum porttitor, odio vel tristique ornare, lacus mi consequat diam, vitae maximus dolor lectus nec justo. Cras ultricies, diam quis dignissim dignissim, quam ligula pellentesque velit, eu bibendum ante nulla non dolor. In fringilla nulla nec ullamcorper luctus. Etiam risus massa, dapibus in facilisis ac, feugiat vitae erat. Aenean nec arcu vitae lorem volutpat ullamcorper vitae sed dui. Quisque bibendum mauris non augue elementum, et viverra lectus euismod. Donec venenatis ipsum id neque molestie pharetra. Quisque lobortis mattis cursus. </p>
-
+        <iframe class="widget-content-iframe" ng-src="{{ widget.url | trusted }}" ng-iframe>
+        </iframe>
     </div><!-- /.box-body -->
 </div>
 {% endverbatim %}

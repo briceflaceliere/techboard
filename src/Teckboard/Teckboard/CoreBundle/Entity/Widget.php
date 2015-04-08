@@ -122,4 +122,15 @@ class Widget
         return hash('sha1', $this->getId().$this->getExpire().$this->getConnector()->getPrivateKey());
     }
 
+    /**
+     * @JMS\VirtualProperty
+     * @JMS\SerializedName("url")
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->getConnector()->getUrl() . '?id=' . $this->getId() . '&token=' . $this->getToken() . '&expire=' . $this->getExpire();
+    }
+
 }
