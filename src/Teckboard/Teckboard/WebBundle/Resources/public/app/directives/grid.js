@@ -11,17 +11,17 @@ teckboard.directive('ngGrid', function() {
             };
 
             $(element).gridstack(options)
-                      .on('change', function (e, items) {
-                         $(items).each(function(item) {
-                             scope = angular.element(this.el).scope();
-                             scope.widget.position_x = this.x;
-                             scope.widget.position_y = this.y;
-                             scope.widget.height = this.height;
-                             scope.widget.width = this.width;
-                             scope.$digest();
-                         });
-                         $(this).scope().changeWidgetsPosition();
-                      });
+                    .on('change', function (e, items) {
+                        $(items).each(function(item) {
+                            scope = angular.element(this.el).scope();
+                            scope.widget.position_x = this.x;
+                            scope.widget.position_y = this.y;
+                            scope.widget.height = this.height;
+                            scope.widget.width = this.width;
+                            scope.$digest();
+                        });
+                        $(this).scope().changeWidgetsPosition();
+                    });
         }
     };
 });

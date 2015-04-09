@@ -5,17 +5,17 @@ teckboard.directive('ngIframe', [function(){
 return {
     restrict: 'A',
     link: function(scope, element, attrs){
-        console.log(element);
+
         element.on('error', function(){
             console.log('error');
         });
         element.on('load', function(){
-            console.log('load');
+            /*console.log('load');*/
             /* Set the dimensions here,
              I think that you were trying to do something like this: */
-            var iFrameHeight = element[0].contentWindow.document.body.scrollHeight + 'px';
+            /*var iFrameHeight = element[0].contentWindow.document.body.scrollHeight + 'px';
             element.css('height', iFrameHeight);
-            console.log(iFrameHeight);
+            console.log(iFrameHeight);*/
         })
     }
 }}]);
