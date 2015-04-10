@@ -1,16 +1,34 @@
 ng-widget {
     .box-body {
         padding: 0;
-        height:100%;
     }
-    iframe {
-        overflow: visible;
-        width: 100%;
 
-        border:none;
+    .grid-stack-item-content{
+        position:relative;
+
+        .box-body {
+            position: absolute;
+            top: 47px;
+            bottom: 5px;
+            left:0px;
+            right: 0px;
+        }
+
+        iframe {
+            width:100%;
+            height: 100%;
+            border:none;
+        }
+    }
+
+    .error {
+        display: none;
+        padding: 0 10px;
     }
 }
 
-ng-widget.ui-resizable-resizing .grid-stack-item-content{
+
+
+/*ng-widget.ui-resizable-resizing .grid-stack-item-content{
     display:none;
-}
+}*/

@@ -2,10 +2,11 @@
 
 <div class="box box-primary grid-stack-item-content">
     <div class="box-header with-border grid-stack-item-header">
-        <h3 class="box-title">{{ widget.name }}</h3>
+        <h3 class="box-title">{{ widget.name }}{{ loading }}</h3>
     </div><!-- /.box-header -->
-    <div class="box-body">
-        <iframe class="widget-content-iframe" ng-src="{{ widget.url | trusted }}" ng-iframe>
+    <div class="box-body ng-loader" ng-class="{'loading': loading}">
+        <div class="error">Chargement impossible</div>
+        <iframe class="widget-content-iframe" ng-src="{{ widget.url | trusted }}">
         </iframe>
     </div><!-- /.box-body -->
 </div>

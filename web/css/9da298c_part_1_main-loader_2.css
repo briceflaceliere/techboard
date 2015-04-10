@@ -27,13 +27,13 @@ body.loading > .loader-wrapper .sk-spinner-wave div {
 }
 .loading > .loader-wrapper .loader-area {
   -moz-user-select: none;
-  bottom: 60px;
+  bottom: 45%;
   height: 60px;
   left: 0;
   margin: auto;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 43%;
   width: 60px;
 }
 .loading > .loader-wrapper .sk-spinner-wave div {

@@ -64,4 +64,34 @@ class Connector
         return $this;
     }
 
+    /**
+     * @ORM\Column(type="json_array", nullable=true)
+     * @JMS\Expose
+     *
+     * @var array
+     */
+    private $dimension;
+
+    /**
+     * @return array
+     */
+    public function getDimension()
+    {
+        return $this->dimension;
+    }
+
+    /**
+     * @param array $dimension
+     *
+     * @return this
+     */
+    public function setDimension($dimension)
+    {
+        $this->dimension = $dimension;
+        return $this;
+    }
+
+
+
+
 }

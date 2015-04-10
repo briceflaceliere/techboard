@@ -33,6 +33,7 @@ class LoadConnectorData extends AbstractFixture implements OrderedFixtureInterfa
                         ->getEncoder($connector);
 
         $connector->setCreateBy($this->getReference('test-user'))
+                  ->setDimension(['minHeight' => 2, 'minWidth' => 2, 'maxWidth' => 6])
                   ->setName('Test connector')
                   ->setPrivateKey($encoder->encodePassword(microtime(), $this->getContainer()->getParameter('secret')))
                   ->setUrl('http://teckboard.local/widget-demo/test-widget.php');
