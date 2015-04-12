@@ -13,6 +13,8 @@ teckboard.directive('ngGrid', function() {
             $(element).gridstack(options)
                     .on('change', function (e, items) {
                         $(items).each(function(item) {
+                            this.el.find('.ng-loader').addClass('loading');
+
                             scope = angular.element(this.el).scope();
                             scope.widget.position_x = this.x;
                             scope.widget.position_y = this.y;
