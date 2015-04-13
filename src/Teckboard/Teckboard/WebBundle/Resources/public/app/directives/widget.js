@@ -1,4 +1,4 @@
-teckboard.directive('ngWidget', function() {
+teckboard.directive('ngWidget', function(WidgetManager) {
     return {
         restrict: 'E',
         scope: { widget : '=' },
@@ -12,7 +12,7 @@ teckboard.directive('ngWidget', function() {
             var error = boxBody.children('.error');
 
             var dimension = scope.widget.connector.dimension;
-            console.log(dimension.minWidth, dimension.maxWidth, dimension.minHeight, dimension.maxHeight);
+
             if (dimension.minWidth != undefined) {
                 element.attr('data-gs-min-width', dimension.minWidth);
             }
@@ -36,7 +36,7 @@ teckboard.directive('ngWidget', function() {
                 var doc = this.contentDocument ? this.contentDocument: win.document;
 
                 var data = $(doc).find('body').data();
-                console.log(data);
+
                 if (data.status == 200) { //OK
                     //log widget
                     iframe.show();
@@ -49,9 +49,19 @@ teckboard.directive('ngWidget', function() {
                     boxBody.removeClass('loading');
 
                     setTimeout(function(){
-                        win.location.reload(true);
+                        WidgetManager.getUrl(scope.widget.id).then(function(url) {
+                            iframe.attr('src', url);
+                        });
                     }, 1000 * 60 * 10); //reload 10 min
                 }
+            });
+
+            element.find('.refresh').on('click', function(){
+                boxBody.addClass('loading');
+
+                WidgetManager.getUrl(scope.widget.id).then(function(url) {
+                    iframe.attr('src', url);
+                });
 
             });
         }

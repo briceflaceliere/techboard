@@ -9,7 +9,7 @@
 sleep(rand(1, 5));
 header("HTTP/1.0 500 Internal Server Error");
 
-var_dump($_GET);
+var_dump(time(), $_GET);
 ?>
 
 <!doctype html>

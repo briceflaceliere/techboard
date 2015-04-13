@@ -24,4 +24,5 @@ teckboard.service('BoardManager', ['Restangular', '$q', function(Restangular, $q
         boardDefer[board.id] = $q.defer();
         return that.api.one(board.id).withHttpConfig({timeout: boardDefer[board.id].promise}).customPUT({widgets : widgetPosition}, "widgets/positions");
     };
+
 }]);

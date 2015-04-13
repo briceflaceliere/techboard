@@ -33,4 +33,22 @@ class WidgetsController extends FOSRestController {
         return $widget;
     }
 
+    /**
+     * Get specific widget information
+     *
+     * @ApiDoc
+     * @View(serializerGroups={"Default", "WidgetDetail"})
+     * @param int $id widget id
+     * @return mixed
+     */
+    public function getWidgetsUrlAction($id)
+    {
+        $widget = $this->getDoctrine()->getRepository('TeckboardCoreBundle:Widget')->find($id);
+
+        if(!is_object($widget)){
+            throw $this->createNotFoundException();
+        }
+        return $widget->getUrl();
+    }
+
 } 

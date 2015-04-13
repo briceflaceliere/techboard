@@ -20,6 +20,7 @@ ng-widget .error {
   display: none;
   padding: 0 10px;
 }
-/*ng-widget.ui-resizable-resizing .grid-stack-item-content{
-    display:none;
-}*/
+ng-widget.ui-draggable-dragging .grid-stack-item-content iframe,
+ng-widget.ui-resizable-resizing .grid-stack-item-content iframe {
+  display: none;
+}
