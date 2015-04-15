@@ -7,12 +7,25 @@
             <button class="btn btn-box-tool refresh">
                 <i class="fa fa-refresh"></i>
             </button>
+            <button class="btn btn-box-tool config" ng-click="widget.configure = !widget.configure">
+                <i class="fa fa-wrench"></i>
+            </button>
         </div>
     </div><!-- /.box-header -->
     <div class="box-body ng-loader" ng-class="{'loading': loading}">
-        <div class="error">Chargement impossible</div>
-        <iframe class="widget-content-iframe" ng-src="{{ widget.url | trusted }}">
-        </iframe>
+        <div class="widget-content" ng-show="!widget.configure">
+            <div class="error">Chargement impossible</div>
+            <iframe class="widget-content-iframe" ng-src="{{ widget.url | trusted }}">
+            </iframe>
+        </div>
+        <div class="widget-config" ng-if="widget.configure">
+            <div>Configure</div>
+            <div>
+                <button class="btn btn-box-tool config" ng-click="widget.configure = false">
+                    Close
+                </button>
+            </div>
+        </div>
     </div><!-- /.box-body -->
 </div>
 {% endverbatim %}

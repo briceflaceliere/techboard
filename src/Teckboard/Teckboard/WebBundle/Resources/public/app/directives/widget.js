@@ -8,8 +8,8 @@ teckboard.directive('ngWidget', function(WidgetManager) {
         },
         link: function(scope, element, attrs) {
             var boxBody = element.children('.grid-stack-item-content').children('.box-body');
-            var iframe = boxBody.children('iframe');
-            var error = boxBody.children('.error');
+            var iframe = boxBody.children('.widget-content').children('iframe');
+            var error = boxBody.children('.widget-content').children('.error');
 
             var dimension = scope.widget.connector.dimension;
 

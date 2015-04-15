@@ -11,6 +11,13 @@ ng-widget .grid-stack-item-content .box-body {
   left: 0px;
   right: 0px;
 }
+ng-widget .grid-stack-item-content .box-body .widget-content {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
 ng-widget .grid-stack-item-content iframe {
   width: 100%;
   height: 100%;
