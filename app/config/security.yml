@@ -4,6 +4,10 @@ security:
             algorithm:        sha1
             encode_as_base64: false
             iterations:       1
+        Teckboard\Teckboard\CoreBundle\Entity\Connector:
+            algorithm:        sha1
+            encode_as_base64: false
+            iterations:       10
 
     providers:
         boards:

@@ -10,6 +10,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use Teckboard\Teckboard\CoreBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class CreateByTrait
@@ -22,6 +23,8 @@ trait CreateByTrait {
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="create_by_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @Assert\NotNull()
      *
      * @var User $createBy
      **/

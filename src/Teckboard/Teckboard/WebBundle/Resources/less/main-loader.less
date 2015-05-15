@@ -1,9 +1,27 @@
+
 body.loading {
-    height: 100%;
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
+
+  > .loader-wrapper {
+    background-color: #3c8dbc !important;
+
+    .sk-spinner-wave div {
+      background-color: #ffffff;
+    }
+  }
 }
 
-#loader-wrapper {
+.ng-loader {
+  position: relative;
+}
+
+.loader-wrapper {
+  display: none;
+}
+
+.loading > .loader-wrapper {
+    display: block !important;
     margin: auto;
     position: absolute;
     right: 0;
@@ -13,15 +31,15 @@ body.loading {
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 2000;
 
-    #loader-area {
+    .loader-area {
         -moz-user-select: none;
-        bottom: 60px;
+        bottom: 45%;
         height: 60px;
         left: 0;
         margin: auto;
         position: absolute;
         right: 0;
-        top: 0;
+        top: 43%;
         width: 60px;
     }
 

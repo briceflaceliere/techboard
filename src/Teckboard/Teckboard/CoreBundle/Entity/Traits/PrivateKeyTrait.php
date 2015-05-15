@@ -10,40 +10,33 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
-trait NameTrait {
+trait PrivateKeyTrait {
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=false)
-     * @JMS\Expose
-     *
-     * @Assert\Type(type="string")
-     * @Assert\NotBlank()
-     *
      * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $name;
+    protected $privateKey;
 
     /**
      * @return string
      */
-    public function getName()
+    public function getPrivateKey()
     {
-        return $this->name;
+        return $this->privateKey;
     }
 
     /**
-     * @param string $name
+     * @param string $privateKey
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setPrivateKey($privateKey)
     {
-        $this->name = $name;
+        $this->privateKey = $privateKey;
         return $this;
     }
-
-
-
 }

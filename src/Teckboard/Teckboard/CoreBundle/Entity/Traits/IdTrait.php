@@ -10,6 +10,7 @@ namespace Teckboard\Teckboard\CoreBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 trait IdTrait {
 
@@ -18,6 +19,9 @@ trait IdTrait {
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @JMS\Expose
+     *
+     * @Assert\Type(type="integer")
+     * @Assert\NotBlank()
      *
      * @var integer
      */

@@ -17,3 +17,8 @@ widgets :
   type: rest
   resource:     "TeckboardCoreBundle:Widgets"
   name_prefix:  api_widget_
+
+connectors :
+  type: rest
+  resource:     "TeckboardCoreBundle:Connectors"
+  name_prefix:  api_connector_
